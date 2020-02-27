@@ -437,6 +437,7 @@
 
 <!--for header jquery--> 
 <script type="text/javascript" src="js/stickUp.js"></script> 
+<script type="text/javascript" src="js/smtp.js"></script> 
 <script src="js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
 jQuery(function($) {
@@ -467,6 +468,22 @@ $(document).ready( function() {
 	  animation: 'fade',
 	  play: 5000
 	});
+</script>  
+
+<script>
+
+  $('#submit').click(function(){
+    Email.send({
+    SecureToken : "cc13d0f8-2c3d-45ad-910b-0932b2be1b11",
+    To : 'ravindrarathore19@gmail.com',
+    From : "support@ravindrarathore19.com",
+    Subject : "This is the subject",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);
+  });
+	
 </script>  
 
 <!--for portfolio jquery--> 
