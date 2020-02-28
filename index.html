@@ -370,7 +370,7 @@
      
       <div class="row media">      	 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 conForm text-center">       
-        <div name="cform"">        
+        <div name="cform">        
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><a href="https://ravindrasrathore.wordpress.com/" target="_blank"  class="submitBnt view-all-blog">View All</a>
          
         </div>
@@ -396,7 +396,7 @@
       <!--contact form start-->
       <div class="row media">      	 
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 conForm text-center">
-        <div id="message"></div>
+        <h3 id="message">Thanks for contacting me. I will reply you ASAP</h3>
         <form method="post" name="cform" id="cform">
           <input required name="name" id="name" type="text" class="col-xs-12 col-sm-12 col-md-8 col-lg-8" placeholder="Your name" >
           <input required name="email" id="email" type="email" class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 noMarr" placeholder="Your email" >
@@ -440,55 +440,15 @@
 <script type="text/javascript" src="js/smtp.js"></script> 
 <script src="js/jquery.superslides.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-jQuery(function($) {
-$(document).ready( function() {
-  //enabling stickUp on the '.navbar-wrapper' class
-	$('.navbar-wrapper').stickUp({
-		parts: {
-		  0: 'banner',
-		  1: 'aboutus',
-		  2: 'skillset',
-		  3: 'experience',
-		  4: 'education',
-		  5: 'ourwork',
-		  6: 'journalblog',
-		  7: 'contact'
-		},
-		itemClass: 'menuItem',
-		itemHover: 'active',
-		topMargin: 'auto'
-		});
-	});
-	
 
-});
 </script>
 <script>
-	$('#banner').superslides({
-	  animation: 'fade',
-	  play: 5000
-	});
+	
 </script>  
 
 <script>
 
-  $('#submit').click(function(){
-  if($('#name').val().length>0 && $('#email').val().length>0 && $('#comments').val().length>0){
-    var name= $('#name').val();
-    var email= $('#email').val();
-    var comments= $('#comments').val();
-    Email.send({
-	Host : "smtp-pulse.com",
-    Username : "ravindrarathore19@gmail.com",
-    Password : "9qKRnnPEcDb",
-    To : 'ravindrarathore19@gmail.com',
-    From : "support@ravindrarathore.com",
-    Subject : "Enquiry",
-    Body : "Name :" + name + " Email :"+email + " Comments :" +comments
-}).then(
-  message => alert(message)
-);}
-  });
+ 
 	
 </script>  
 

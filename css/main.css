@@ -997,6 +997,7 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 
 #message {
 	margin-bottom:30px;
+	display: none;
 }
 .cinfoBox{
 	padding-bottom:40px;

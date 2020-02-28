@@ -1,6 +1,60 @@
 (function($) { 
 		  
 $(document).ready(function(){
+	jQuery(function($) {
+		$(document).ready( function() {
+		  //enabling stickUp on the '.navbar-wrapper' class
+			$('.navbar-wrapper').stickUp({
+				parts: {
+				  0: 'banner',
+				  1: 'aboutus',
+				  2: 'skillset',
+				  3: 'experience',
+				  4: 'education',
+				  5: 'ourwork',
+				  6: 'journalblog',
+				  7: 'contact'
+				},
+				itemClass: 'menuItem',
+				itemHover: 'active',
+				topMargin: 'auto'
+				});
+			});
+			
+		
+		});
+		$('#banner').superslides({
+			animation: 'fade',
+			play: 5000
+		  });
+		  $('#submit').click(function(){
+			if($('#name').val().length>0 && $('#email').val().length>0 && $('#comments').val().length>0){
+			  var name= $('#name').val();
+			  var email= $('#email').val();
+			  var comments= $('#comments').val();
+			  Email.send({
+			  Host : "smtp.elasticemail.com",
+			  Username : "ravindrarathore19@gmail.com",
+			  Password : "599A74C9D869140591842D15A5E3127AC398",
+			  To : 'ravindrarathore19@gmail.com',
+			  From : "ravindrarathore19@gmail.com",
+			  Subject : "Enquiry",
+			  Body : "Name :" + name + " Email :"+email + " Comments :" +comments
+		  }).then(
+			function (x){
+			  if(x=="OK"){
+				$("#message").show();
+				$("#cform").hide();
+			  }
+			  else{
+			  $("#message").html("It seems like some error in form submission. Please try again later.");
+			  $("#message").show();
+				$("#cform").hide();
+			  }
+			 
+		  }
+		  );}
+			});
 	$('.slide').prepend('<div class="patternOverlay"></div>');	
 	
 	$('.skillbar').each(function(){
