@@ -38,7 +38,7 @@ $(document).ready(function(){
 			  Password : "599A74C9D869140591842D15A5E3127AC398",
 			  To : 'ravindrarathore19@gmail.com',
 			  From : "ravindrarathore19@gmail.com",
-			  Subject : "Enquiry",
+			  Subject : "Enquiry on ravindrarathore.com",
 			  Body : "Name :" + name + " Email :"+email + " Comments :" +comments
 		  }).then(
 			function (x){
