@@ -474,7 +474,9 @@ $(document).ready( function() {
 
   $('#submit').click(function(){
     Email.send({
-    SecureToken : "cc13d0f8-2c3d-45ad-910b-0932b2be1b11",
+	Host : "smtp.sendgrid.net",
+    Username : "apikey",
+    Password : "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",
     To : 'ravindrarathore19@gmail.com',
     From : "support@ravindrarathore19.com",
     Subject : "This is the subject",
