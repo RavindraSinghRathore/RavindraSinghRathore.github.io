@@ -1,219 +1,323 @@
-(function($) { 
-		  
-$(document).ready(function(){
-	jQuery(function($) {
-		$(document).ready( function() {
-		  //enabling stickUp on the '.navbar-wrapper' class
-			$('.navbar-wrapper').stickUp({
-				parts: {
-				  0: 'banner',
-				  1: 'aboutus',
-				  2: 'skillset',
-				  3: 'experience',
-				  4: 'education',
-				  5: 'ourwork',
-				  6: 'journalblog',
-				  7: 'contact'
-				},
-				itemClass: 'menuItem',
-				itemHover: 'active',
-				topMargin: 'auto'
-				});
-			});
-			
-		
-		});
-		$('#banner').superslides({
-			animation: 'fade',
-			play: 5000
-		  });
-		  $('#submit').click(function(){
-			if($('#name').val().length>0 && $('#email').val().length>0 && $('#comments').val().length>0){
-			  var name= $('#name').val();
-			  var email= $('#email').val();
-			  var comments= $('#comments').val();
-			  Email.send({
-			  Host : "smtp.elasticemail.com",
-			  Username : "ravindrarathore19@gmail.com",
-			  Password : "599A74C9D869140591842D15A5E3127AC398",
-			  To : 'ravindrarathore19@gmail.com',
-			  From : "ravindrarathore19@gmail.com",
-			  Subject : "Enquiry on ravindrarathore.com",
-			  Body : "Name :" + name + " Email :"+email + " Comments :" +comments
-		  }).then(
-			function (x){
-			  if(x=="OK"){
-				$("#message").show();
-				$("#cform").hide();
-			  }
-			  else{
-			  $("#message").html("It seems like some error in form submission. Please try again later.");
-			  $("#message").show();
-				$("#cform").hide();
-			  }
-			 
-		  }
-		  );}
-			});
-	$('.slide').prepend('<div class="patternOverlay"></div>');	
-	
-	$('.skillbar').each(function(){
-		$(this).find('.skillbar-bar').animate({
-			width:$(this).attr('data-percent')
-		},6000);
-	});
-	
-	$('.skillbar').each(function(){
-		$(this).find('.skill-bar-percent').animate({
-			left:$(this).attr('data-percent')
-		},6000);
-	});
-	
-	$('.skillbar').each(function(){
-		$(this).find('.skill-bar-percent').text($(this).attr('data-percent'));
-	});
-	
-	if($(window).width()>767){
-		$('.navbar-wrapper').animate({
-			opacity:0
-		},200);
-		$('.navbar-wrapper').addClass('default-menu');
-		
-	}	
-	
-	$('#nav-show').click(function(x){
-		x.preventDefault();
-		$('.wrapper').removeClass('noGap');
-		$('.navbar-wrapper').animate({
-			opacity:1
-		},200);
-		$('.navbar-wrapper').removeClass('default-menu');
-		$(this).fadeOut();
-	});
-	
-	$('.closeMenu').click(function(x){
-		x.preventDefault();
-		$('.navbar-wrapper').animate({
-			opacity:0
-		},50,function(){$('.navbar-wrapper').addClass('default-menu');});
-		
-		$('#nav-show').fadeIn();
-	});
-	
-	
-});	
+//====================================================================================
+  
+//    Template Name: Runaway - Personal Portfolio HTML Template
+//    Version: 2.1.1
+//    Author: themetrading
+//    Email: themetrading@gmail.com
+//    Developed By: themetrading
+//    First Release: 08 February 2019
+//    Author URL: www.themetrading.com
 
+//=====================================================================================
+ 
+//  01.   Preloader For Hide loader
+//  02.   Scroll Top
+//  03.   Navbar scrolling navbar Fixed
+//  04.   Services Slider
+//  05.   Team Slider
+//  06.   Testimonial Slider
+//  07.   Fact Counter
+//  08.   LightBox / Fancybox
+//  09.   Gallery With Filters List
+//  10.   Youtube and Vimeo video popup control
+//  11.   Contact Form Validation
 
-	
-/*===========================================================*/
-	/*	Preloader 
-/*===========================================================*/	
-//<![CDATA[
-	$(window).load(function() { // makes sure the whole site is loaded
-		$("#status").fadeOut(); // will first fade out the loading animation
-		$("#preloader").delay(350).fadeOut("slow"); // will fade out the white DIV that covers the website.
-	})
-//]]>
-		  
-// for mobile nav js	
-$(window).load(function(){
-	$('button.navbar-toggle').click(function(){
-		$(this).toggleClass('active');
-		$('.navbar-collapse').slideToggle();										 
-	});					
-});
-// for banner height js
-var windowWidth = $(window).width();
-var windowHeight =$(window).height();
-$('.banner').css({'height':windowHeight });
+//=====================================================================================
 
+(function ($) {
+    "use strict";
 
-// for portfoli filter jquary
-$(window).load(function(){
-    var $container = $('.portfolioContainer');
-    $container.isotope({
-        filter: '*',
-        animationOptions: {
-            duration: 750,
-            easing: 'linear',
-            queue: false
-        }
+    var $body = $("body"),
+        $window = $(window),
+        $contact = $('#contact-form')
+        
+        $body.scrollspy({
+          target: ".navbar-collapse",
+          offset: 20
+
     });
- 
-    $('.portfolioFilter a').click(function(){
-        $('.portfolioFilter .current').removeClass('current');
-        $(this).addClass('current');
- 
-        var selector = $(this).attr('data-filter');
-        $container.isotope({
-            filter: selector,
-            animationOptions: {
-                duration: 750,
-                easing: 'linear',
-                queue: false
-            }
-         });
-         return false;
-    }); 
 
+//=====================================================================================
+//  01.   Preloader For Hide loader
+//=====================================================================================
 
+  function handlePreloader() {
+    if($('.preloader').length){
+      $('.preloader').delay(500).fadeOut(500);
+      $('body').removeClass('page-load');
+    }
+  } 
 
-// for portfoli lightbox jquary
-jQuery(function() {
-	var $chosenSheet,
-	$stylesheets = $( "a[id^=theme-]" );
-	
-	// run rlightbox
-	$( ".lb" ).rlightbox();
-	$( ".lb_title-overwritten" ).rlightbox({overwriteTitle: true});
-});
-});
+  $window.on('load', function() {
+    handlePreloader();
+  });
 
-// Somth page scroll
-$(function() {
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top -16
-        }, 1000);
-        return false;
-      }
+//=====================================================================================
+// 02.  Scroll Top
+//======================================================================================
+
+  $(window).scroll(function(){ 
+    if ($(this).scrollTop() > 500) { 
+      $('#scroll').fadeIn(); 
+    } else { 
+      $('#scroll').fadeOut(); 
+    } 
+  }); 
+  $('#scroll').click(function(){ 
+    $("html, body").animate({ scrollTop: 0 }, 1000); 
+    return false; 
+  });
+
+//====================================================================================
+// 03.    Navbar scrolling navbar Fixed
+//====================================================================================
+
+  $window.on("scroll",function () {
+
+    var bodyScroll = $window.scrollTop(),
+      navbar = $(".main_nav"),
+      logo = $(".main_nav .navbar-brand> img");
+
+    if(bodyScroll > 100){
+
+      navbar.addClass("nav-scroll");
+    }else{
+
+      navbar.removeClass("nav-scroll");
     }
   });
-});
+
+//=====================================================================================
+//  04.   Services Slider
+//=====================================================================================
+
+    $('.services_item').owlCarousel({
+     loop: true,
+     autoplay: false,
+     autoplayTimeout: 5000,
+     nav: true,
+     dots: false,
+     navText: ['<span class="fa fa-angle-left"></span>','<span class="fa fa-angle-right"></span>'],
+     responsive:{
+
+        0:{
+          items:1
+        },
+        600:{
+          items:1
+        },
+        1024:{
+          items:3
+        },
+        1200:{
+          items:3
+        }
+      }
+      
+     });
+
+//=====================================================================================
+//  05.   Team Slider
+//=====================================================================================
+
+  $('.team_member').owlCarousel({
+   loop: true,
+   autoplay: false,
+   autoplayTimeout: 5000,
+   margin: 30,
+   nav: true,
+   dots: false,
+   navText: ['<span class="fa fa-angle-left"></span>','<span class="fa fa-angle-right"></span>'],
+   responsive:{
+
+      0:{
+        items:1
+      },
+      600:{
+        items:1
+      },
+      1024:{
+        items:3
+      },
+      1200:{
+        items:3
+      }
+    }
+    
+   });
+
+//=====================================================================================
+//  06.   Testimonial Slider
+//=====================================================================================
+
+    $('.testimonial_item').owlCarousel({
+     loop: true,
+     autoplay: true,
+     autoplayTimeout: 5000,
+     margin: 0,
+     nav: true,
+     dots: false,
+     navText: ['<span class="fa fa-angle-left"></span>','<span class="fa fa-angle-right"></span>'],
+     responsive:{
+
+        0:{
+          items:1
+        },
+        600:{
+          items:1
+        },
+        1024:{
+          items:2
+        },
+        1200:{
+          items:2
+        }
+      }
+      
+     });
+
+//=====================================================================================
+// 07.    Fact Counter
+//=====================================================================================
+
+ function factCounter() {
+    if($('.fact-counter').length){
+     $('.fact-counter .count.animated').each(function() {
+    
+      var $t = $(this),
+       n = $t.find(".count-num").attr("data-stop"),
+       r = parseInt($t.find(".count-num").attr("data-speed"), 10);
+       
+      if (!$t.hasClass("counted")) {
+         $t.addClass("counted");
+         $({
+          countNum: $t.find(".count-text").text()
+         }).animate({
+          countNum: n
+         }, {
+          duration: r,
+          easing: "linear",
+          step: function() {
+           $t.find(".count-num").text(Math.floor(this.countNum));
+          },
+          complete: function() {
+           $t.find(".count-num").text(this.countNum);
+          }
+         });
+      }
+      
+      //set skill building height
 
 
-// Testimonial slider
-// $(window).load(function(){
-  // $('.flexslider').flexslider({
-	// animation: "fade",
-	// animationLoop: true,
-	// slideshow: true,
-	// pauseOnAction: false,
-	// slideshowSpeed: 7000,
-	// controlNav: true,
-	// start: function(slider){
-	  // $('body').removeClass('loading');
-	// }
-  // });
-// });
+       var size = $(this).children('.progress-bar').attr('aria-valuenow');
+       $(this).children('.progress-bar').css('width', size+'%');
 
+     });
+    }
+ }
+  
+  if($('.wow').length){
+    var wow = new WOW(
+      {
+      boxClass:     'wow',      // animated element css class (default is wow)
+      animateClass: 'animated', // animation css class (default is animated)
+      offset:       0,          // distance to the element when triggering the animation (default is 0)
+      mobile:       true,       // trigger animations on mobile devices (default is true)
+      live:         true       // act on asynchronously loaded content (default is true)
+      }
+    );
+    wow.init();
+  }
 
-// we worked slider
-// $(window).load(function(){
-      // $('.worklogo').flexslider({
-        // animation: "slide",
-		// slideshow: false,
-        // itemWidth: 210,
-        // itemMargin: 5,
-        
-      // });
-    // });
+   // When document is Scrollig, do
+ 
+ $(window).on('scroll', function() {
+  factCounter();
+ });
 
-// Skill set 
+//=====================================================================================
+//  08.   LightBox / Fancybox
+//=====================================================================================
 
+    $('[data-fancybox="gallery"]').fancybox({
+       animationEffect: "zoom-in-out",
+       transitionEffect: "slide",
+       transitionEffect: "slide",
+    });
 
-}(jQuery));
+//=====================================================================================
+//  09.   Gallery With Filters List
+//=====================================================================================
+
+    if($('.filter-list').length){
+      $('.filter-list').mixItUp({});
+    }
+
+//=====================================================================================
+//  10.   Youtube and Vimeo video popup control
+//=====================================================================================
+
+     jQuery(function(){
+      jQuery("a.video-popup").YouTubePopUp();
+      //jQuery("a.video-popup").YouTubePopUp( { autoplay: 0 } ); // Disable autoplay
+     });
+
+//=========================================================================================
+//  11.   Contact Form Validation
+//=========================================================================================
+
+if($contact.length){
+    $contact.validate({  //#contact-form contact form id
+      rules: {
+        name: {
+          required: true    // Field name here
+        },
+        email: {
+          required: true, // Field name here
+          email: true
+        },
+        subject: {
+          required: true
+        },
+        message: {
+          required: true
+        }
+      },
+      
+      messages: {
+                name: "Please enter your First Name", //Write here your error message that you want to show in contact form
+                email: "Please enter valid Email", //Write here your error message that you want to show in contact form
+                subject: "Please enter your Subject", //Write here your error message that you want to show in contact form
+                message: "Please write your Message" //Write here your error message that you want to show in contact form
+            },
+
+            submitHandler: function (form) {
+                $('#send').attr({'disabled' : 'true', 'value' : 'Sending...' });
+                $.ajax({
+                    type: "POST",
+                    url: "email.php",
+                    data: $(form).serialize(),
+                    success: function () {
+                        $('#send').removeAttr('disabled').attr('value', 'Send');
+                        $( "#success").slideDown( "slow" );
+                        setTimeout(function() {
+                        $( "#success").slideUp( "slow" );
+                        }, 5000);
+                        form.reset();
+                    },
+                    error: function() {
+                        $('#send').removeAttr('disabled').attr('value', 'Send');
+                        $( "#error").slideDown( "slow" );
+                        setTimeout(function() {
+                        $( "#error").slideUp( "slow" );
+                        }, 5000);
+                    }
+                });
+                return false; // required to block normal submit since you used ajax
+            }
+
+    });
+  }
+
+})(jQuery);
+
