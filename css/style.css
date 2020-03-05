@@ -415,6 +415,7 @@ a:hover,a:focus,a.active{
   background-image: url(../images/background/04.jpg);
   background-size: cover;
   background-position: center center;
+    z-index: 1;
 }
 /*====================================================================
 08.   Nav Menu Css
