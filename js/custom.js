@@ -358,7 +358,7 @@ $(document).ready(function () {
         if (this.hash !== "") {
             event.preventDefault();
 
-            var hash = this.attr('target');
+            var hash = this.attr('data-target');
             alert(hash);
             $('html, body').animate({
                 scrollTop: $(hash).offset().top
