@@ -353,7 +353,7 @@ function includeHTML() {
 $(document).ready(function () {
     //  Smoothscroll js
     //=========================================
-    $("a").on('click', function (event) {
+    $(".blog-page a").on('click', function (event) {
 
         if (this.hash !== "") {
             event.preventDefault();
