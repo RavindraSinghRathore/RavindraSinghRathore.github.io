@@ -1,0 +1,309 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Render Episerver Page Item tree on View | Ravindra Rathore - Certified Sitecore and Episerver Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Episerver Developer, Episerver Developer,Certified Episerver Developer, Certified Episerver Developer, Episerver India, Sitecore India, CMS developer India,Episerver, Sitecore CMS developer, developer, Episerver blog, Ravindra Singh Rathore, Ravindra India, Ravindra Rathore">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Render Episerver Page Item tree on View | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div w3-include-html="/components/preloader.html"></div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Details</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Render Episerver Page Item tree on View</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8">
+                            <div class="blog_details">
+                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
+                                <div class="blog_content bg_white blog_detail-page">
+                                    <div class="blog_title mb_20 color_primary">
+                                        <h2>Render Episerver Page Item tree on View</h2>
+                                    </div>
+                                    <div class="admin">
+                                        <img src="/images/about/02.jpg" alt="image">
+                                        <span class="color_primary">By - Ravindra Rathore</span>
+                                    </div>
+                                    <div class="date color_primary float-left">24 June 2019</div>
+                                    <div class="comments">
+                                       
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <span> <a class="color_primary" href="http://www.ravindrarathore.com/blog/2019/06/24/render-episerver-page-item-tree-on-view.html#disqus_thread">Link</a></span>
+                                    </div>
+                                    <div class="clearfix"><p></p></div>
+                                    <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+
+                                        <p> Hi Guys,</p>
+                                        <p>
+                                            I have a scenario in our website where I need to display the Episerver tree on our view.
+                                        </p>
+                                        <p>
+                                            Like-
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/06/24/1.png" />
+                                        </p>
+                                        <p>
+                                            So I thought that we can use the “GetDescendents” method and it will render the tree but i was wrong. It basically give you all the page items in a single list so you need to build the tree by your own.
+                                        </p>
+                                        <p>
+                                            So to build the tree i wrote below code-
+                                        </p>
+
+
+                                        <p>
+                                            <pre>
+                                            <code>
+public class BlogItemTree
+    {
+        public int PageId { get; set; }
+
+        public int? ParentPageId { get; set; }
+
+        public PageData ContentPage { get; set; }
+
+        public List<BlogItemTree> Children { get; set; }
+    }
+ 
+   public static class GenericExtensions
+    {
+        private static readonly IContentLoader _contentLoader;
+
+        static GenericExtensions()
+        {
+            _contentLoader = ServiceLocator.Current.GetInstance<IContentLoader>();
+        }
+        public static void FindDescendantsOfType<T>(PageData page, ICollection<T> descendants)
+            where T : class
+        {
+            var children = _contentLoader.GetChildren<PageData>(page.PageLink);
+            foreach (var child in children)
+            {
+                if (child is T)
+                {
+                    descendants.Add(child as T);
+                }
+
+                FindDescendantsOfType(child, descendants);
+            }
+        }
+
+        public static List<BlogItemTree> BlogItemTrees(List<PageData> descendants)
+        {
+            var blogItemTree = new List<BlogItemTree>();
+            foreach (var blogItem in descendants)
+            {
+                var item = new BlogItemTree() { PageId = blogItem.PageLink.ID, ParentPageId = blogItem.ParentLink.ID };
+                blogItemTree.Add(item);
+            }
+
+            var tree = blogItemTree.BuildTree();
+            return tree;
+        }
+
+        public static List<BlogItemTree> BuildTree(this IEnumerable<BlogItemTree> source)
+        {
+            var groups = source.GroupBy(i => i.ParentPageId);
+
+            var roots = groups.FirstOrDefault().ToList();
+
+            if (roots.Count > 0)
+            {
+                var dict = groups.Where(g => g.Key.HasValue).ToDictionary(g => g.Key.Value, g => g.ToList());
+                for (int i = 0; i < roots.Count; i++)
+                {
+                    var pageRef = new PageReference(roots[i].PageId);
+
+                    roots[i].ContentPage = _contentLoader.Get<PageData>(pageRef);
+                    AddChildren(roots[i], dict);
+                }
+            }
+
+            return roots;
+        }
+
+        private static void AddChildren(BlogItemTree node, IDictionary<int, List<BlogItemTree>> source)
+        {
+            if (source.ContainsKey(node.PageId))
+            {
+                node.Children = source[node.PageId];
+                var pageRef = new PageReference(node.PageId);
+                node.ContentPage = _contentLoader.Get<PageData>(pageRef);
+                for (int i = 0; i < node.Children.Count; i++)
+                {
+                    AddChildren(node.Children[i], source);
+                }
+            }
+            else
+            {
+                var pageRef = new PageReference(node.PageId);
+                node.ContentPage = _contentLoader.Get<PageData>(pageRef);
+                node.Children = new List<BlogItemTree>();
+            }
+        }
+    }
+                                                </code>
+</pre>
+                                        </p>
+                                        <p>
+                                            And then created one more class to call these functions and get the proper output
+                                        </p>
+                                       
+                                        <p>
+                                            <pre>
+<code>
+public class BlogListByYearBlockService
+    {
+        public List<ContentPage> Descendants = new List<ContentPage>();
+
+        private readonly IContentLoader _contentLoader;
+
+        public BlogListByYearBlockService(IContentLoader contentLoader)
+        {
+            _contentLoader = contentLoader ?? throw new ArgumentNullException(nameof(contentLoader));
+        }
+
+        public List<BlogItemTree> GetTreeData(BlogListByYearBlock block)
+        {
+            GenericExtensions.FindDescendantsOfType(StartPage, Descendants);
+            List<BlogItemTree> tree = GenericExtensions.BlogItemTrees(Descendants);
+            return tree;
+        }
+    }
+</code>
+</pre>
+                                        </p>
+                                        <p>
+                                            Now the tree object will give you the exact same tree that is in your Episerver you just need to render this.
+                                        </p>
+                                        <p>Thanks for reading this blog post I hope it helps</p>
+                                        <p>
+                                            Thanks and regards
+                                        </p>
+                                        <p>Ravindra S. Rathore</p>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="disqus_thread"></div>
+                                <script>
+
+                                    /**
+                                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                    /*
+                                    var disqus_config = function () {
+                                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                    };
+                                    */
+                                    (function () { // DON'T EDIT BELOW THIS LINE
+                                        var d = document, s = d.createElement('script');
+                                        s.src = 'https://http-www-ravindrarathore-com.disqus.com/embed.js';
+                                        s.setAttribute('data-timestamp', +new Date());
+                                        (d.head || d.body).appendChild(s);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="blog_sidebar">
+                                <div w3-include-html="/components/social.html"></div>
+                                <div w3-include-html="/components/recent-post.html"></div>
+                                <div w3-include-html="/components/category.html"></div>
+                                <div w3-include-html="/components/archives.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
