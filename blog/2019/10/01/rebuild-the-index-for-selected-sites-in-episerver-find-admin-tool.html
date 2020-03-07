@@ -83,7 +83,7 @@
                                 <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
                                 <div class="blog_content bg_white blog_detail-page">
                                     <div class="blog_title mb_20 color_primary">
-                                        <h5>Rebuild the index for selected sites in Episerver Find | Admin Tool</h5>
+                                        <h2>Rebuild the index for selected sites in Episerver Find | Admin Tool</h2>
                                     </div>
                                     <div class="admin">
                                         <img src="/images/about/02.jpg" alt="image">
@@ -119,9 +119,9 @@
                                                 FYI – You can refer this blog post to create a custom GUI Plugin using MVC
                                             </strong>
                                         </p>
-                                        <h2>
+                                        <h4>
                                             Create a Controller
-                                        </h2>
+                                        </h4>
                                         <p>
 
                                         </p>
@@ -232,9 +232,9 @@ namespace ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin
                                                 </code>
 </pre>
                                         </p>
-                                        <h2>
+                                        <h4>
                                             Create a ViewModel
-                                        </h2>
+                                        </h4>
                                         <p>
 
                                         </p>
@@ -256,7 +256,7 @@ namespace ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.ViewModels
 </code>
 </pre>
                                         </p>
-                                        <h2>Create a View</h2>
+                                        <h4>Create a View</h4>
                                         <p>
 
                                         </p>
@@ -288,7 +288,7 @@ namespace ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.ViewModels
     </script>
     @if (Model != null && Model.Sites != null && Model.Sites.Any())
     {
-    &lt;h2&gt;Site Listing&lt;/h2&gt;
+    &lt;h4&gt;Site Listing&lt;/h4&gt;
 
     using (Html.BeginForm("InitiateRebuildIndex", "RebuildFindIndex", FormMethod.Post))
     {
@@ -310,15 +310,15 @@ namespace ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.ViewModels
     }
     else
     {
-    &lt;h2 class="job-started"&gt;Schedule job started&lt;/h2&gt;
+    &lt;h4 class="job-started"&gt;Schedule job started&lt;/h4&gt;
     &lt;div id="runningStatus"&gt;&lt;/div&gt;
     }
 </code>
 </pre>
                                         </p>
-                                        <h2>
+                                        <h4>
                                             Create an initialization Module
-                                        </h2>
+                                        </h4>
                                         <p>
 
                                         </p>
