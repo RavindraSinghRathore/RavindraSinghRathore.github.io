@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="An easy way to manage static text in Episerver CMS | Ravindra Rathore - Certified Sitecore and Episerver Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Episerver Developer, Episerver Developer,Certified Episerver Developer, Certified Episerver Developer, Episerver India, Sitecore India, CMS developer India,Episerver, Sitecore CMS developer, developer, Episerver blog, Ravindra Singh Rathore, Ravindra India, Ravindra Rathore">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>An easy way to manage static text in Episerver CMS | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div w3-include-html="/components/preloader.html"></div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Details</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">An easy way to manage static text in Episerver CMS</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8">
+                            <div class="blog_details">
+                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
+                                <div class="blog_content bg_white blog_detail-page">
+                                    <div class="blog_title mb_20 color_primary">
+                                        <h2>An easy way to manage static text in Episerver CMS</h2>
+                                    </div>
+                                    <div class="admin">
+                                        <img src="/images/about/02.jpg" alt="image">
+                                        <span class="color_primary">By - Ravindra Rathore</span>
+                                    </div>
+                                    <div class="date color_primary float-left">11 Sept 2019</div>
+                                    <div class="comments">
+                                       
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <span> <a class="color_primary" href="http://www.ravindrarathore.com/blog/2019/12/15/disable-indexing-for-specific-item-in-episerver-find#disqus_thread">Link</a></span>
+                                    </div>
+                                    <div class="clearfix"><p></p></div>
+                                    <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+                                       
+                                        <p> Hi All,</p>
+                                        <p>
+                                            Today, I am writing a blog post to create a dictionary block to manage static text like – “Read More, Learn more, View More, etc…”. This is very helpful when you have multiple CTA blocks or pages those have this kind of static text and you want to give the control to the content author to update this text as well as to localize it.
+                                        </p>
+                                        <p>
+                                            Also, it is very easy to manage all the content inside Episerver CMS and you don’t need to create additional fields on each and every block again and again.
+                                        </p>
+                                        <h4>Step 1 – Create a block class and name it “DictionaryEntryBlock”</h4>
+                                        <p>
+                                             </p>
+                                        <p>
+                                            To do this you just need to create a block class and name it <strong> “DictionaryEntryBlock“</strong>.
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+using System.ComponentModel.DataAnnotations;
+using EPiServer.Core;
+using EPiServer.DataAbstraction;
+using EPiServer.DataAnnotations;
+
+namespace Dictionary.Models.Blocks
+{
+    [ContentType(DisplayName = "DictionaryEntry", GUID = "5199528c-6220-4b39-83b5-f1816df85ac8", Description = "Add dictionary value entry for static text")]
+    public class DictionaryEntryBlock : BlockData
+    {
+        [Display(
+            Name = "Key",
+            Description = "Dictionary key name",
+            GroupName = SystemTabNames.Content,
+            Order = 1)]
+        public virtual string Key { get; set; }
+
+        [CultureSpecific]
+        [Display(
+            Name = "Phrase",
+            Description = "Dictionary key pharse value",
+            GroupName = SystemTabNames.Content,
+            Order = 2)]
+        public virtual string Phrase { get; set; }
+    }
+}
+</code>
+</pre> </p>
+                                        <h4>Step 2 – Create a new interface called “IDictionaryRepository” and a class which implements this interface</h4>
+                                        <p></p>
+                                        <p>
+                                            Then create a new interface called <strong>“IDictionaryRepository“</strong>. Please create a folder inside your “Business” folder and named it “Repository” and then create below repository interface and class inside this folder.
+                                        </p>
+
+                                        <p>
+                                            <pre>
+                                            <code>
+using System.Collections.Generic;
+using Dictionary.Models.Blocks;
+
+namespace Dictionary.Business.Repositories
+{
+    public interface IDictionaryRepository
+    {
+        string GetPhrase(string key);
+
+        IEnumerable<DictionaryEntryBlock> GetAll();
+    }
+}
+                                                </code>
+</pre>
+                                        </p>
+                                        <p>
+                                            Now you have to create a new class(<strong>DictionaryRepository</strong>) to implement the methods of the above interface. I am using the Episerver Find. You can also use some other search provider if have configured any other search provider.
+
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Dictionary.Models.Blocks;
+using EPiServer.Find;
+using EPiServer.Find.Cms;
+using EPiServer.Globalization;
+
+namespace Dictionary.Business.Repositories
+{
+    public class DictionaryRepository : IDictionaryRepository
+    {
+        private readonly IClient _findClient;
+
+        public DictionaryRepository(IClient findClient)
+        {
+            _findClient = findClient ?? throw new ArgumentNullException(nameof(findClient));
+        }
+
+        public string GetPhrase(string key)
+        {
+            var queryBuilder = this._findClient
+                .Search<DictionaryEntryBlock>()
+                .ExcludeDeleted().InLanguageBranch(ContentLanguage.PreferredCulture.Name)
+                .Filter(x => x.Key.MatchCaseInsensitive(key));
+
+            var result = queryBuilder.GetContentResult().Items.FirstOrDefault();
+
+            return result?.Phrase ?? "";
+        }
+
+        public IEnumerable<DictionaryEntryBlock> GetAll()
+        {
+            var queryBuilder = this._findClient
+                .Search<DictionaryEntryBlock>()
+                .ExcludeDeleted();
+
+            var result = queryBuilder.GetContentResult().Items;
+
+            return result;
+        }
+    }
+}
+</code>
+</pre>
+                                        </p>
+                                        <h4>Step 3 – Registering services</h4>
+                                        <p></p>
+                                        <p>
+                                            Now just register this repository service to your DependencyResolverInitialization class.
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+context.Services.AddHttpContextOrThreadScoped<IDictionaryRepository>(x => x.GetInstance<DictionaryRepository>());
+</code>
+</pre>
+                                        </p>
+                                        <h4>Step 4 – And a useful extension method to make our life easier</h4>
+                                        <p></p>
+                                    <p>I have also created an Html helper method to retrieve the dictionary block.</p>
+                                    <p>
+                                        <pre>
+<code>
+using System;
+using System.Web.Mvc;
+using Dictionary.Business.Repositories;
+using EPiServer.ServiceLocation;
+
+namespace Dictionary.Helpers
+{
+    public static class DictionaryHelper
+    {
+        public static string DictionaryEntry(this HtmlHelper html, string key, string fallback = "")
+        {
+            if (string.IsNullOrEmpty(key))
+                return string.Empty;
+
+            var _dictionaryService = ServiceLocator.Current.GetInstance<IDictionaryRepository>();
+
+            var phrase = _dictionaryService?.GetPhrase(key)?.Trim();
+
+            return !string.IsNullOrEmpty(phrase) ? phrase : fallback;
+        }
+    }
+}
+</code>
+</pre>
+                                    </p>
+                                    
+
+                                    <p>FYI- I am using the ServiceLocator to get the instance of IDictionaryRepository for this blog post you should use constructor initialization on your basepage or baseblock </p>
+                                    
+                                    <h4>Setting up things</h4>
+                                    <p></p>
+                                    <p>Now login into your Episerver instance and create a new block of type <strong>“DictionaryEntry“</strong>. Name it “ReadMore”. Please fill both the “Key” and “Phrase” fields. Please see below screenshot.</p>
+                                    <p>
+                                        <img src="/images/blog-images/2019/09/11/1.jpg" />
+                                    </p>
+                                    <p>Once everything is in place then you can use the above helper method to retrieve the dictionary value. The first parameter is the key and second is the fallback value nothing found in CMS.</p>
+                                    <p>
+                                            <pre>
+<code>
+@Html.DictionaryEntry("ReadMore", "Read More")
+</code>
+</pre>
+                                        </p>
+                                        
+                                        <p>Hurray!! the page is no more in the index.</p>
+                                        <p>Thanks for reading this blog post I hope it helps</p>
+                                        <p>
+                                            Thanks and regards
+                                        </p>
+                                        <p>Ravindra S. Rathore</p>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="disqus_thread"></div>
+                                <script>
+
+                                    /**
+                                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                    /*
+                                    var disqus_config = function () {
+                                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                    };
+                                    */
+                                    (function () { // DON'T EDIT BELOW THIS LINE
+                                        var d = document, s = d.createElement('script');
+                                        s.src = 'https://http-www-ravindrarathore-com.disqus.com/embed.js';
+                                        s.setAttribute('data-timestamp', +new Date());
+                                        (d.head || d.body).appendChild(s);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="blog_sidebar">
+                                <div w3-include-html="/components/social.html"></div>
+                                <div w3-include-html="/components/recent-post.html"></div>
+                                <div w3-include-html="/components/category.html"></div>
+                                <div w3-include-html="/components/archives.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
