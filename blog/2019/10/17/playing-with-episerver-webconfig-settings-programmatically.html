@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 
-<!-- blog-details52:49-->
 <head>
     <!--===== Meta Tag =====-->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="Welcome to my website - Ravindra Rathore - Certified Sitecore and Episerver Developer">
+    <meta name="description" content="Playing with Episerver webconfig settings programmatically | Ravindra Rathore - Certified Sitecore and Episerver Developer">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keywords" content="Episerver Developer, Episerver Developer,Certified Episerver Developer, Certified Episerver Developer, Episerver India, Sitecore India, CMS developer India,Episerver, Sitecore CMS developer, developer, Episerver blog, Ravindra Singh Rathore, Ravindra India, Ravindra Rathore">
     <meta name="author" content="root">
@@ -26,7 +25,7 @@
 
     <!--	Title
     ==================================================-->
-    <title>Blog details | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
+    <title>Playing with Episerver webconfig settings programmatically | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
 
 </head>
 
@@ -64,7 +63,7 @@
                                     <ul>
                                         <li class="hover_gray"><a href="/blog.html">Blog</a></li>
                                         <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
-                                        <li class="color-default">Blog Details</li>
+                                        <li class="color-default">Playing with Episerver webconfig settings programmatically</li>
                                     </ul>
                                 </div>
                             </div>
@@ -81,44 +80,94 @@
                     <div class="row">
                         <div class="col-md-8 col-lg-8">
                             <div class="blog_details">
-                                <div class="blog_img overlay_one wow animated slideInUp"><img src="images/blog/01.jpg" alt="image"></div>
-                                <div class="blog_content bg_white">
+                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
+                                <div class="blog_content bg_white blog_detail-page">
                                     <div class="blog_title mb_20 color_primary">
-                                        <h5>Exclude/Disable specific items from index in Episerver Find.</h5>
+                                        <h5>Playing with Episerver webconfig settings programmatically.</h5>
                                     </div>
                                     <div class="admin">
-                                        <img src="images/about/02.jpg" alt="image">
+                                        <img src="/images/about/02.jpg" alt="image">
                                         <span class="color_primary">By - Ravindra Rathore</span>
                                     </div>
-                                    <div class="date color_primary float-left">15 Dec 2019</div>
+                                    <div class="date color_primary float-left">17 Oct 2019</div>
                                     <div class="comments">
+
                                         <i class="fa fa-comment" aria-hidden="true"></i>
-                                        <span class="color_primary">12</span>
+                                        <span> <a class="color_primary" href="http://www.ravindrarathore.com/blog/2019/12/15/disable-indexing-for-specific-item-in-episerver-find#disqus_thread">Link</a></span>
                                     </div>
+                                    <div class="clearfix"><p></p></div>
                                     <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+
+                                        <p> Hi Guys,</p>
                                         <p>
-                                            Hi Guys,
-                                            <br />
-                                            As you all know that Episerver Find is a preferred indexing tool for Episerver solution and we all use this in our search implementation.
-                                            <br />
-                                            Sometimes we want some pages will not index in our search indexes. Like – Search Landing page itself.
-                                            <br />
-                                            So today I am going to tell you the approach in which you can exclude/disable the indexes for a specific item that you don’t want to store in your Find indexes.
-                                            <br />
-                                            FYI- Alloy solution already provides a CMS field for the “DisableIndexing” but the implementation is missing yet.
-                                            <br />
-                                            Ok so to start with this we just need to add a checkbox in CMS so that content author or admin can exclude any page from the index.
-                                            <br />
-                                            Please add the following field on “BasePage” so that it is available on all the pages and author/admin can disable the indexing.
-                                            <br />
+                                            Sometimes we need to read, write or update some of the property from the Episerver web.config so Episerver provided a class called <strong>“EPiServerFrameworkSection“</strong>. By using this class we can achieve this.
+                                        </p>
+                                        <p>
+                                            I found this class very handy and I used this many times when I have to read, write and update the settings on web.config programmatically.
+                                        </p>
+                                        <p>
+                                            This exists in <strong>“EPiServer.Framework.Configuration”</strong> namespace.
+                                        </p>
+                                        <p>
+                                            Some Examples-
+                                        </p>
+                                        <p>
+                                            <strong>Reading providers from config-</strong>
                                         </p>
 
-                                        <p>Dictumst augue tortor laoreet. Commodo ad laoreet parturient magna tristique elementum facilisis sodales velit morbi nostra iaculis, fermentum bibendum. Congue per Ornare in placerat. phasellus dapibus ullamcorper dolor pellentesque aliquam nibh ultrices aliquam netus consectetuer Etiam tempus nam ridiculus fringilla elementum pharetra tempor torquent purus purus. Neque. Lorem. Eget montes pretium donec mus tincidunt venenatis interdum.</p>
-                                        <p class="mt_15 wow animated slideInUp">Sit lacinia dolor arcu vel quisque neque felis proin ante, nisl amet vitae nullam placerat elementum varius cum viverra, vel mattis elit praesent iaculis sollicitudin bibendum est consequat tempus hac ante pulvinar leo suspendisse tellus dictum. Morbi, venenatis ullamcorper.</p>
-                                        <blockquote class="color_primary mt_15 wow animated slideInUp"><sup><i class="fa fa-quote-left" aria-hidden="true"></i></sup> Netus vestibulum nostra facilisi tellus. Id taciti dapibus Platea tincidunt quis sollicitudin dignissim penatibus orci primis cum ullamcorper euismod, potenti tincidunt praesent ipsum aug. Ullamcorper cras vestibulum urna inceptos Neque curae; feugiat mattis auctor nec tortor faucibus. Elit vehicula nibh dolor litora. Placerat ad mauris. Dapibus hymenaeos. Potenti.<sup><i class="fa fa-quote-right" aria-hidden="true"></i></sup></blockquote>
-                                        <p class="mt_15">Ante nascetur class fames leo nisi arcu Fringilla sapien Netus libero nisl lacinia id urna commodo tellus volutpat. Integer ridiculus consectetuer ut lacus. Platea ante at dis cras sed pharetra dictumst dui tellus condimentum duis pellentesque. Cubilia scelerisque nascetur nostra proin bibendum inceptos. Inceptos fringilla malesuada ut feugiat mus phasellus Nunc cubilia. Turpis tristique luctus libero est tortor nostra orci commodo nullam rhoncus Lacus ante morbi. Ante vitae nullam nisi.</p>
+
+                                        <p>
+                                            <pre>
+                                            <code>
+ProviderSettingsCollection virtualRoles = EPiServerFrameworkSection.Instance.VirtualRoles.Providers;
+ProviderSettingsCollection blobProviders = EPiServerFrameworkSection.Instance.Blob.Providers;
+
+                                                </code>
+</pre>
+                                        </p>
+                                        <p>
+                                            <strong>Reading connections string –</strong>
+
+                                        </p>
+                                        <p>
+                                            <pre><code>
+var ConnectionStrings = EPiServerFrameworkSection.Instance.CurrentConfiguration.ConnectionStrings;
+</code></pre>
+                                        </p>
+
+                                        <p><strong>Reading Appdata path-</strong><p>
+                                            <pre>
+<code>
+string appData = EPiServerFrameworkSection.Instance.AppData.BasePath;
+
+</code>
+</pre>
+                                        </p>
+                                        <p>
+                                            There are lots of other options as well that you can explore on your own. Here are some great documentation from Episerver
+                                        </p>
+
+                                        <p>
+                                            <a href="https://world.episerver.com/documentation/class-library/?documentId=cms/11/4E02FB31">
+                                                https://world.episerver.com/documentation/class-library/?documentId=cms/11/4E02FB31
+                                            </a>
+
+                                        </p>
+                                        <p>
+                                            <a href="https://world.episerver.com/documentation/class-library/?documentId=episerverframework/7/09b6aa52-2249-641a-ed99-d6ebe9afc589">
+                                                https://world.episerver.com/documentation/class-library/?documentId=episerverframework/7/09b6aa52-2249-641a-ed99-d6ebe9afc589
+                                            </a>
+
+                                        </p>
+                                        <p>Thanks for reading this blog post I hope it helps</p>
+                                        <p>
+                                            Thanks and regards
+                                        </p>
+                                        <p>Ravindra S. Rathore</p>
+
+
                                     </div>
-                                    <div w3-include-html="/components/social-share.html"></div>
+
                                 </div>
                                 <div id="disqus_thread"></div>
                                 <script>
@@ -173,5 +222,6 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/plugins.js"></script>
     <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
 </body>
 </html>
