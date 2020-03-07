@@ -2760,3 +2760,9 @@ code {
     .blog_detail-page .single_blog_content {
         display: block !important;
     }
+.blog-detail-list {
+    padding: 5px 10px 0 40px;
+}
+    .blog-detail-list li {
+        list-style-type: disc;
+    }
