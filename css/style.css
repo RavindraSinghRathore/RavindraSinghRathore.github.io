@@ -2738,3 +2738,19 @@ label.radios {
       font-size: 15px;
   }
 }
+
+
+pre {
+    overflow: auto;
+    max-width: 100%;
+    margin-bottom: 1.6em;
+    padding: 1.6em;
+    font-size: 15px;
+    font-size: .9375rem;
+    line-height: 1.6;
+    background: #f3f3f3;
+}
+code {
+    word-break: normal;
+    color: #777;
+}

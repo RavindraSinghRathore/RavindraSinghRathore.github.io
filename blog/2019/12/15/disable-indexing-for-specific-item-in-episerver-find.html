@@ -26,7 +26,7 @@
 
     <!--	Title
     ==================================================-->
-    <title>Blog details | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
+    <title>Exclude/Disable specific items from index in Episerver Find | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
 
 </head>
 
@@ -81,13 +81,13 @@
                     <div class="row">
                         <div class="col-md-8 col-lg-8">
                             <div class="blog_details">
-                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog/01.jpg" alt="image"></div>
+                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
                                 <div class="blog_content bg_white">
                                     <div class="blog_title mb_20 color_primary">
                                         <h5>Exclude/Disable specific items from index in Episerver Find.</h5>
                                     </div>
                                     <div class="admin">
-                                        <img src="images/about/02.jpg" alt="image">
+                                        <img src="/images/about/02.jpg" alt="image">
                                         <span class="color_primary">By - Ravindra Rathore</span>
                                     </div>
                                     <div class="date color_primary float-left">15 Dec 2019</div>
@@ -97,26 +97,108 @@
                                     </div>
                                     <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
                                         <p>
-                                            Hi Guys,
-                                            <br />
+                                        <p> Hi Guys,</p>
+                                        <p>
                                             As you all know that Episerver Find is a preferred indexing tool for Episerver solution and we all use this in our search implementation.
-                                            <br />
+                                        </p>
+                                        <p>
                                             Sometimes we want some pages will not index in our search indexes. Like – Search Landing page itself.
-                                            <br />
+                                        </p>
+                                        <p>
                                             So today I am going to tell you the approach in which you can exclude/disable the indexes for a specific item that you don’t want to store in your Find indexes.
-                                            <br />
-                                            FYI- Alloy solution already provides a CMS field for the “DisableIndexing” but the implementation is missing yet.
-                                            <br />
+                                        </p>
+                                        <p>
+                                            FYI- Alloy solution already provides a CMS field for the <strong>“DisableIndexing”</strong> but the implementation is missing yet.
+                                        </p>
+                                        <p>
                                             Ok so to start with this we just need to add a checkbox in CMS so that content author or admin can exclude any page from the index.
-                                            <br />
-                                            Please add the following field on “BasePage” so that it is available on all the pages and author/admin can disable the indexing.
-                                            <br />
+                                        </p>
+                                        <p>
+                                            Please add the following field on <strong>“BasePage”</strong> so that it is available on all the pages and author/admin can disable the indexing.
                                         </p>
 
-                                        <p>Dictumst augue tortor laoreet. Commodo ad laoreet parturient magna tristique elementum facilisis sodales velit morbi nostra iaculis, fermentum bibendum. Congue per Ornare in placerat. phasellus dapibus ullamcorper dolor pellentesque aliquam nibh ultrices aliquam netus consectetuer Etiam tempus nam ridiculus fringilla elementum pharetra tempor torquent purus purus. Neque. Lorem. Eget montes pretium donec mus tincidunt venenatis interdum.</p>
-                                        <p class="mt_15 wow animated slideInUp">Sit lacinia dolor arcu vel quisque neque felis proin ante, nisl amet vitae nullam placerat elementum varius cum viverra, vel mattis elit praesent iaculis sollicitudin bibendum est consequat tempus hac ante pulvinar leo suspendisse tellus dictum. Morbi, venenatis ullamcorper.</p>
-                                        <blockquote class="color_primary mt_15 wow animated slideInUp"><sup><i class="fa fa-quote-left" aria-hidden="true"></i></sup> Netus vestibulum nostra facilisi tellus. Id taciti dapibus Platea tincidunt quis sollicitudin dignissim penatibus orci primis cum ullamcorper euismod, potenti tincidunt praesent ipsum aug. Ullamcorper cras vestibulum urna inceptos Neque curae; feugiat mattis auctor nec tortor faucibus. Elit vehicula nibh dolor litora. Placerat ad mauris. Dapibus hymenaeos. Potenti.<sup><i class="fa fa-quote-right" aria-hidden="true"></i></sup></blockquote>
-                                        <p class="mt_15">Ante nascetur class fames leo nisi arcu Fringilla sapien Netus libero nisl lacinia id urna commodo tellus volutpat. Integer ridiculus consectetuer ut lacus. Platea ante at dis cras sed pharetra dictumst dui tellus condimentum duis pellentesque. Cubilia scelerisque nascetur nostra proin bibendum inceptos. Inceptos fringilla malesuada ut feugiat mus phasellus Nunc cubilia. Turpis tristique luctus libero est tortor nostra orci commodo nullam rhoncus Lacus ante morbi. Ante vitae nullam nisi.</p>
+                                        <p>
+                                            <pre>
+                                            <code>
+                                                    [Display(
+                                                    GroupName = Global.GroupNames.MetaData,
+                                                    Order = 100)]
+                                                    [CultureSpecific]
+                                                    public virtual bool DisableIndexing { get; set; }
+                                                </code>
+</pre>
+                                        </p>
+                                        <p>
+                                            Once this is done you can see this new field in the CMS.
+
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/12/15/1.png" />
+                                        </p>
+
+                                        <p>Now you have to create an initialization module so that we can use this field and exclude the items from indexes.</p>
+                                        <p>
+                                            <pre>
+<code>
+using DisableSpecificItemIndexFind.Models.Pages;
+using EPiServer.Find.Cms;
+using EPiServer.Find.Cms.Conventions;
+using EPiServer.Framework;
+using EPiServer.Framework.Initialization;
+namespace DisableSpecificItemIndexFind.Business.Initialization
+{
+    [InitializableModule]
+    [ModuleDependency(typeof(EPiServer.Find.Cms.Module.IndexingModule))]
+    public class DisableItemIndexFindInitialization : IInitializableModule
+    {
+        public void Initialize(InitializationEngine context)
+        {
+            ContentIndexer.Instance.Conventions.ForInstancesOf<SitePageData>().ShouldIndex(x => !x.DisableIndexing);
+        }
+        public void Uninitialize(InitializationEngine context)
+        {
+            //Add uninitialization logic
+        }
+    }
+}
+</code>
+</pre>
+                                        </p>
+                                        <p>
+                                            This is all from a coding point of view. Now you can use this new feature on your website. Build the solution and login to your site.
+
+                                        </p>
+                                        <p>
+                                            Navigate to Find management tool( http://localhost:63205/EPiServer/Find/#overview/explore ) on your website and query for the page that you want to exclude. Like – searchpage.
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/12/15/2.png" />
+                                        </p>
+                                        <p>
+                                            Let’s navigate to the Search page in the content tree and checked the “Disable indexing” checkbox.
+
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/12/15/3.png" />
+                                        </p>
+                                        <p>
+                                            Finally, go to the admin menu and rebuild the Find indexes again using the built-in schedule job(<strong>EPiServer Find Content Indexing Job</strong>).
+                                        </p>
+                                        <p>
+                                            Again go to Find console and search for <strong>“seachpage”</strong> again.
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/12/15/4.png" />
+                                        </p>
+                                        <p>Hurray!! the page is no more in the index.</p>
+                                        <p>Thanks for reading this blog post I hope it helps</p>
+                                        <p>
+                                            Thanks and regards
+                                            Ravindra S. Rathore
+                                        </p>
+
+                                        </p>
+
                                     </div>
                                     <div w3-include-html="/components/social-share.html"></div>
                                 </div>
