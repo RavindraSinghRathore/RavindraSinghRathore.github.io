@@ -247,9 +247,9 @@ namespace TestProject.EditorDescriptors
                                         </p>
                                         <p>
                                             <pre><code>
-<p>@Html.PropertyFor(x => x.CurrentPage.EventDate)</p>
-<p @Html.EditAttributes(x => x.CurrentPage.EventStartTime)>@Model.CurrentPage.EventStartTime.ToString("hh:mm tt")</p>
-<p @Html.EditAttributes(x => x.CurrentPage.EventEndTime)>@Model.CurrentPage.EventEndTime.ToString("hh:mm tt")</p>
+@Html.PropertyFor(x => x.CurrentPage.EventDate)
+@Html.EditAttributes(x => x.CurrentPage.EventStartTime)>@Model.CurrentPage.EventStartTime.ToString("hh:mm tt")
+@Html.EditAttributes(x => x.CurrentPage.EventEndTime)>@Model.CurrentPage.EventEndTime.ToString("hh:mm tt")
 </code></pre>
                                         </p>
                                        
