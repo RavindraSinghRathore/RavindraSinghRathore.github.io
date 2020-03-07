@@ -2754,3 +2754,9 @@ code {
     word-break: normal;
     color: #777;
 }
+.blog_detail-page {
+    display: block;
+}
+    .blog_detail-page .single_blog_content {
+        display: block !important;
+    }
