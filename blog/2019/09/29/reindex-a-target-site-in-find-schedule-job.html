@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Reindex a target site in Find (Schedule Job) | Ravindra Rathore - Certified Sitecore and Episerver Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Episerver Developer, Episerver Developer,Certified Episerver Developer, Certified Episerver Developer, Episerver India, Sitecore India, CMS developer India,Episerver, Sitecore CMS developer, developer, Episerver blog, Ravindra Singh Rathore, Ravindra India, Ravindra Rathore">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Reindex a target site in Find (Schedule Job) | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div w3-include-html="/components/preloader.html"></div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Details</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Reindex a target site in Find (Schedule Job)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8">
+                            <div class="blog_details">
+                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
+                                <div class="blog_content bg_white blog_detail-page">
+                                    <div class="blog_title mb_20 color_primary">
+                                        <h2>Reindex a target site in Find (Schedule Job)</h2>
+                                    </div>
+                                    <div class="admin">
+                                        <img src="/images/about/02.jpg" alt="image">
+                                        <span class="color_primary">By - Ravindra Rathore</span>
+                                    </div>
+                                    <div class="date color_primary float-left">29 Sept 2019</div>
+                                    <div class="comments">
+                                       
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <span> <a class="color_primary" href="http://www.ravindrarathore.com/blog/2019/12/15/disable-indexing-for-specific-item-in-episerver-find#disqus_thread">Link</a></span>
+                                    </div>
+                                    <div class="clearfix"><p></p></div>
+                                    <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+                                       
+                                        <p> Hi Guys,</p>
+                                        <p>
+                                            We all use Episerver Find as a search provider and it is a very handy tool for the site search. I also prefer Find over all the other search provider in Epi.
+                                        </p>
+                                        <p>
+                                            But index rebuild is very time consuming if you have multiple sites hosted in the Episerver CMS.
+                                        </p>
+                                        <p>
+                                            I am working on a project and it has around 50+ sites those are using the search functionality and whenever I want to rebuild the index for one site I have to run the pre-defined schedule job(EPiServer Find Content Indexing Job) and it takes around 1-2 hours because it rebuilt the index for all the sites.
+                                        </p>
+                                        <p>
+                                            I need a way to rebuild the indexes for the specific site so I have created a new schedule job.
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+using System;
+using System.Text;
+using System.Web;
+using EPiServer.Find.Cms;
+using EPiServer.Find.Helpers.Text;
+using EPiServer.PlugIn;
+using EPiServer.Scheduler;
+using EPiServer.Web;
+
+namespace ABC.Framework.Web.Business
+{
+    [ScheduledPlugIn(DisplayName = "Rebuild Targeted Site Indexes", GUID = "A71C3D81-C481-4CB5-A5B9-66BC7C0095FA")]
+    public class SiteIndexScheduledJob : ScheduledJobBase
+    {
+        private bool _stopSignaled;
+
+        public SiteIndexScheduledJob()
+        {
+            IsStoppable = true;
+        }
+
+        /// <summary>
+        /// Called when a user clicks on Stop for a manually started job, or when ASP.NET shuts down.
+        /// </summary>
+        public override void Stop()
+        {
+            _stopSignaled = true;
+        }
+
+        /// <summary>
+        /// Called when a scheduled job executes
+        /// </summary>
+        /// <returns>A status message to be stored in the database log and visible from admin mode</returns>
+        public override string Execute()
+        {
+
+            if (!string.IsNullOrEmpty(SiteDefinition.Current.Name))
+            {
+                //Call OnStatusChanged to periodically notify progress of job for manually started jobs
+                OnStatusChanged($"Starting execution of rebuild indexes for {SiteDefinition.Current.Name} site");
+
+                var statusReport = new StringBuilder();
+
+                // ReIndex the indexes for the sites that have * in its host configuration
+                ContentIndexer.ReIndexResult reIndexResult = ContentIndexer.Instance.ReIndex(
+                    status =>
+                    {
+                        if (status.IsError)
+                        {
+                            string errorMessage = status.Message.StripHtml();
+                            if (errorMessage.Length > 0)
+                                statusReport.Append($"{errorMessage}");
+                        }
+
+                        OnStatusChanged(
+                            $"Indexing job [{(SiteDefinition.Current.Name)}] [content]: {status.Message.StripHtml()}");
+                    },
+                    () => _stopSignaled);
+            }
+            else
+            {
+                return "Job is cancelled. Please add a host entry with * in site, which you rebuild the indexes";
+            }
+
+
+            //For long running jobs periodically check if stop is signaled and if so stop execution
+            if (_stopSignaled)
+            {
+                return "Stop of job was called";
+            }
+
+
+            return $"Index rebuild successful for {SiteDefinition.Current.Name}";
+        }
+    }
+}
+</code>
+</pre>
+                                            </p>
+                                        <p>
+                                            It basically rebuilds the indexes for the current site but as you know that if you try to access the “SiteDefinition.Current” in the schedule job it will not return the site, so to overcome this thing you need to apply a wild card character * in the site. Once you applied the wild card character you will get that site as a current site. You can read more about it <a href="https://world.episerver.com/blogs/stackmanoz/dates/2019/8/accessing-contentreference-in-schedule-job-or-wherever-you-receive-httpcontext-as-null/" target="_blank">HERE</a>
+                                        </p>
+
+                                       
+                                        <p>
+                                            So add a wild card character on the site on which you want to rebuild the indexes. Please refer below screenshot for your reference.
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/09/29/1.jpg" />
+                                        </p>
+
+                                        <p>Once you are done with this. Please go to Admin->Admin and run the new schedule job <strong>“Rebuild Targeted Site Indexes“</strong>. You will see that it will start the indexing for the wild card character site. <p>
+                                            
+                                       
+                                        <p>
+                                            <img src="/images/blog-images/2019/09/29/2.jpg" />
+                                                                                                                                                                                                                                                                </p>
+                                        
+                                        <p>Thanks for reading this blog post I hope it helps</p>
+                                        <p>
+                                            Thanks and regards
+                                        </p>
+                                        <p>Ravindra S. Rathore</p>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="disqus_thread"></div>
+                                <script>
+
+                                    /**
+                                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                    /*
+                                    var disqus_config = function () {
+                                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                    };
+                                    */
+                                    (function () { // DON'T EDIT BELOW THIS LINE
+                                        var d = document, s = d.createElement('script');
+                                        s.src = 'https://http-www-ravindrarathore-com.disqus.com/embed.js';
+                                        s.setAttribute('data-timestamp', +new Date());
+                                        (d.head || d.body).appendChild(s);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="blog_sidebar">
+                                <div w3-include-html="/components/social.html"></div>
+                                <div w3-include-html="/components/recent-post.html"></div>
+                                <div w3-include-html="/components/category.html"></div>
+                                <div w3-include-html="/components/archives.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
