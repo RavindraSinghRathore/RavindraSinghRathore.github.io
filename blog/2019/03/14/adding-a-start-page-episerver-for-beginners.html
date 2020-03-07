@@ -1,0 +1,364 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Adding a Start Page| Episerver for beginners | Ravindra Rathore - Certified Sitecore and Episerver Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Episerver Developer, Episerver Developer,Certified Episerver Developer, Certified Episerver Developer, Episerver India, Sitecore India, CMS developer India,Episerver, Sitecore CMS developer, developer, Episerver blog, Ravindra Singh Rathore, Ravindra India, Ravindra Rathore">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Adding a Start Page| Episerver for beginners | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div w3-include-html="/components/preloader.html"></div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Details</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Adding a Start Page| Episerver for beginners</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8">
+                            <div class="blog_details">
+                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
+                                <div class="blog_content bg_white blog_detail-page">
+                                    <div class="blog_title mb_20 color_primary">
+                                        <h2>Adding a Start Page| Episerver for beginners</h2>
+                                    </div>
+                                    <div class="admin">
+                                        <img src="/images/about/02.jpg" alt="image">
+                                        <span class="color_primary">By - Ravindra Rathore</span>
+                                    </div>
+                                    <div class="date color_primary float-left">14 March 2019</div>
+                                    <div class="comments">
+                                       
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <span> <a class="color_primary" href="http://www.ravindrarathore.com/blog/2019/03/14/adding-a-start-page-episerver-for-beginners.html#disqus_thread">Link</a></span>
+                                    </div>
+                                    <div class="clearfix"><p></p></div>
+                                    <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+
+                                        <p> Hi Guys,</p>
+                                        <p>
+                                            To create first page type in your EmptySite solution that is created in my last blog post. Please follow the below steps-
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>Open the EmptySite solution in visual studio.</li>
+                                                <li>Right click on the pages folder inside Models->Pages. Please refer below screenshot for reference.</li>
+                                            </ul>
+
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/03/24/1.png" />
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>Now click Add-> New Item.</li>
+                                                <li>Now select <strong>“Episerver”</strong> template from installed template.</li>
+                                                <li>Then choose the “PageType” and give the name “StartPage”. Please refer below screenshot for reference.</li>
+                                            </ul>
+
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/03/24/2.png" />
+                                        </p>
+                                        <p>
+                                        <p>
+                                            <pre>
+<code>
+using EPiServer.Core;
+using EPiServer.DataAbstraction;
+using EPiServer.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
+
+namespace EmptySite.Models.Pages
+{
+    [ContentType(DisplayName = "Start",
+        GUID = "4cc06328-5403-4c7d-86a5-b6f9d00c66c3",
+        GroupName = SiteGroupNames.Specialized, Order = 10,
+        Description = "The home page for a website with an area for blocks and partial pages.")]
+    public class StartPage : PageData
+    {
+        [CultureSpecific]
+        [Display(Name = "Heading",
+            Description = "If the Heading is not set, the page falls back to showing the Name.",
+            GroupName = SystemTabNames.Content, Order = 10)]
+        public virtual string Heading { get; set; }
+
+        [CultureSpecific]
+        [Display(Name = "Main body",
+            Description = "The main body uses the XHTML-editor you can insert for example text, images, and tables.",
+            GroupName = SystemTabNames.Content, Order = 20)]
+        public virtual XhtmlString MainBody { get; set; }
+    }
+}
+</code>
+</pre>
+                                        </p>
+                                        <p>
+                                            Once this is done. Now it’s time to create the controller for this StartPage.
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>Right click on the “Controllers” folder .</li>
+                                                <li>Now click Add-> New Item.</li>
+                                                <li>Now select <strong>“Episerver”</strong> template from installed template.</li>
+                                                <li>Then choose the <strong>“Page Controller (MVC)”</strong> and give the name <strong>“StartPageController“</strong>. Please refer below screenshot for reference.</li>
+
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/03/24/3.png" />
+                                        </p>
+                                        <p>Code should look like this</p>
+                                        <p>
+                                            <pre>
+                                            <code>
+using AlloyTraining.Models.Pages;
+using EPiServer.Web.Mvc;
+using System.Web.Mvc;
+
+namespace EmptySite.Controllers
+{
+    public class StartPageController : PageController<StartPage>
+    {
+        public ActionResult Index(StartPage currentPage)
+        {
+            return View(currentPage);
+        }
+    }
+}
+                                                </code>
+</pre>
+                                        </p>
+                                        <p>
+                                            Once you are done with the StartPageController. Now it time to render the start page properties and do this just create a view for this inside the views folder.
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>Right click on the “Views” folder and then choose Add->New Folder and Name it StartPage.</li>
+                                                <li>Now select this new folder and right click on this and choose Add-> New Item.</li>
+                                                <li>Now select “Episerver” template from installed template.</li>
+                                                <li>Then choose the <strong>“Page Partial View (MVC Razor)”</strong> and give the name <strong>“Index“</strong>. Please refer below screenshot for reference</li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/03/24/4.png" />
+                                        </p>
+
+                                        <p>
+                                            Once this is done. Update the model to use correct page type.
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+@model EmptySite.Models.Pages.StartPage
+</code>
+</pre>
+                                        </p>
+                                        <p>
+                                            The index.cshtml look like this.
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+@using EPiServer.Web.Mvc.Html
+@model EmptySite.Models.Pages.StartPage
+&lt;h1&gt;
+    @Html.PropertyFor(m => m.Heading)
+&lt;/h1&gt;
+&lt;div&gt;
+    @Html.PropertyFor(m => m.MainBody)
+&lt;/div&gt;
+</code>
+</pre>
+                                        </p>
+                                        <p>
+                                            That’s all as a code point of view.
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>To use this StartPage in Episerver CMS. Run the site using “”Ctrl+F5”.</li>
+                                                <li>Login in Episerver CMS. Like ” http://localhost:56501/EPiServer/Cms“.</li>
+                                                <li>To open the “Navigation Pane”. Click on the “Toggle Navigation Pane”.</li>
+
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/03/24/5.png" />
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>Now create a instance of the start page by clicking the “+” icon in above screenshot or by clicking the context menu of <strong>“Root”</strong> page and select the <strong>“New Page“</strong>.</li>
+                                                <li>Give it a name like “Start” and click create.</li>
+                                                <li>
+                                                    Now fill the properties of this page and publish it. Please refer below screenshot for reference.
+                                                </li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/03/24/6.png" />
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>To view this page. you need to set this page as a Start page.</li>
+                                                <li>Click on the “Admin” near the “Edit” button in the left top section.</li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/03/24/7.png" />
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>Once the admin panel is open.</li>
+                                                <li>Click on the “Config” and then click on the “Manage Websites”.</li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/03/24/8.png" />
+                                        </p>
+                                        <p>
+                                            <ul>
+                                                <li>Now click on the “Add Site” button.</li>
+                                                <li>It will give the following screen.</li>
+                                                <li>Please fill below properties-</li>
+                                                <li>Name – Give any name like – DemoSite</li>
+                                                <li>URL- Put the same URL that is showing in the browser window like – http://localhost:56501/</li>
+                                                <li>Start page – It is used for selecting the start item of your website. Click on the 3 dots and select the “Start” page item.</li>
+                                                <li>Use site-specific assets – It will enable a folder “For This Site” in the CMS so that content author can upload the site specific assets.</li>
+                                            </ul>
+                                    </p>
+                                    <p>
+                                        <img src="/images/blog-images/2019/03/24/9.png" />
+                                    </p>
+                                    <p>
+                                        That’s all. Run the site using the URL – http://localhost:56501/
+                                    </p>
+                                       
+                                        <p>Thanks for reading this blog post I hope it helps</p>
+                                        <p>
+                                            Thanks and regards
+                                        </p>
+                                        <p>Ravindra S. Rathore</p>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="disqus_thread"></div>
+                                <script>
+
+                                    /**
+                                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                    /*
+                                    var disqus_config = function () {
+                                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                    };
+                                    */
+                                    (function () { // DON'T EDIT BELOW THIS LINE
+                                        var d = document, s = d.createElement('script');
+                                        s.src = 'https://http-www-ravindrarathore-com.disqus.com/embed.js';
+                                        s.setAttribute('data-timestamp', +new Date());
+                                        (d.head || d.body).appendChild(s);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="blog_sidebar">
+                                <div w3-include-html="/components/social.html"></div>
+                                <div w3-include-html="/components/recent-post.html"></div>
+                                <div w3-include-html="/components/category.html"></div>
+                                <div w3-include-html="/components/archives.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
