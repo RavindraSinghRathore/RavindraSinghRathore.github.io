@@ -266,53 +266,53 @@ namespace ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.ViewModels
 @using System.Web.Mvc
 @using System.Web.Mvc.Html
 @inherits System.Web.Mvc.WebViewPage<ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.ViewModels.RebuildFindIndexViewModel>
-@{
+    @{
     Layout = null;
-}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript">
-    var messageInterval = setInterval(function () {
-        $.get('/custom-plugins/my-plugin/get-message').done(function (result) {
-            $(".job-started").show();
-            if (result.StopExecution == null) {
-                $('#runningStatus').html(result.RunningMessage);
+    }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var messageInterval = setInterval(function () {
+            $.get('/custom-plugins/my-plugin/get-message').done(function (result) {
+                $(".job-started").show();
+                if (result.StopExecution == null) {
+                    $('#runningStatus').html(result.RunningMessage);
 
-            } else {
-                $('#runningStatus').html(result.StopExecution);
-                clearInterval(messageInterval);
-                $(".job-started").html("Index rebuild successfully");
-                $("#runningStatus").hide();
-            }
-        });
-    }, 10000)
-</script>
-@if (Model != null && Model.Sites != null && Model.Sites.Any())
-{
-                                            <h2>Site Listing</h2>
+                } else {
+                    $('#runningStatus').html(result.StopExecution);
+                    clearInterval(messageInterval);
+                    $(".job-started").html("Index rebuild successfully");
+                    $("#runningStatus").hide();
+                }
+            });
+        }, 10000)
+    </script>
+    @if (Model != null && Model.Sites != null && Model.Sites.Any())
+    {
+    &lt;h2&gt;Site Listing&lt;/h2&gt;
 
     using (Html.BeginForm("InitiateRebuildIndex", "RebuildFindIndex", FormMethod.Post))
     {
 
-        foreach (var site in Model.Sites)
-        {
-                                            <input type="checkbox" title="@site.Name" name="selectedObjects" value="@site.Id">
+    foreach (var site in Model.Sites)
+    {
+    &lt;input type="checkbox" title="@site.Name" name="selectedObjects" value="@site.Id"&gt;
 
-                                            <label for="selectedObjects">@site.Name</label>
-                                            <br />
+    &lt;label for="selectedObjects"&gt;@site.Name&lt;/label&gt;
+    &lt;br /&gt;
 
 
-
-        }
-        @*@Html.DropDownList("SelectedSite", new SelectList(Model.Sites, "Value", "Text"))*@
-                                            <input type="submit" value="Rebuild" />
 
     }
-}
-else
-{
-                                            <h2 class="job-started">Schedule job started</h2>
-                                            <div id="runningStatus"></div>
-}
+    @*@Html.DropDownList("SelectedSite", new SelectList(Model.Sites, "Value", "Text"))*@
+    &lt;input type="submit" value="Rebuild" /&gt;
+
+    }
+    }
+    else
+    {
+    &lt;h2 class="job-started"&gt;Schedule job started&lt;/h2&gt;
+    &lt;div id="runningStatus"&gt;&lt;/div&gt;
+    }
 </code>
 </pre>
                                         </p>
