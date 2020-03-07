@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Rebuild the index for selected sites in Episerver Find | Admin Tool | Ravindra Rathore - Certified Sitecore and Episerver Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Episerver Developer, Episerver Developer,Certified Episerver Developer, Certified Episerver Developer, Episerver India, Sitecore India, CMS developer India,Episerver, Sitecore CMS developer, developer, Episerver blog, Ravindra Singh Rathore, Ravindra India, Ravindra Rathore">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Rebuild the index for selected sites in Episerver Find | Admin Tool | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div w3-include-html="/components/preloader.html"></div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Details</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Rebuild the index for selected sites in Episerver Find | Admin Tool</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8">
+                            <div class="blog_details">
+                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
+                                <div class="blog_content bg_white blog_detail-page">
+                                    <div class="blog_title mb_20 color_primary">
+                                        <h5>Rebuild the index for selected sites in Episerver Find | Admin Tool</h5>
+                                    </div>
+                                    <div class="admin">
+                                        <img src="/images/about/02.jpg" alt="image">
+                                        <span class="color_primary">By - Ravindra Rathore</span>
+                                    </div>
+                                    <div class="date color_primary float-left">01 Oct 2019</div>
+                                    <div class="comments">
+                                       
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <span> <a class="color_primary" href="http://www.ravindrarathore.com/blog/2019/10/01/rebuild-the-index-for-selected-sites-in-episerver-find-admin-tool#disqus_thread">Link</a></span>
+                                    </div>
+                                    <div class="clearfix"><p></p></div>
+                                    <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+
+                                        <p> Hi Guys,</p>
+                                        <p>
+                                            Last Friday, I wrote a blog post related to <a href="#"></a> “Reindex a target site in Find” using is works job. It works well but you need to update the site definition every time when you want to rebuild the indexes for any site.
+                                        </p>
+                                        <p>
+                                            So I received some feedback to convert it to Episerver Admin Tool and now I converted it to Episerver Admin Tool. Where you can rebuild the indexes for selected sites.
+                                        </p>
+                                        <p>
+                                            Here is the final structure of my solution.
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/10/01/1.png" />
+                                        </p>
+                                        <p>
+                                            To create a new GUI Plugin Episerver provide a template for Webforms but not for MVC so you need to create it manually. Below I mentioned the steps for creating a GUI plugin using MVC.
+                                        </p>
+                                        <p>
+                                            <strong>
+                                                FYI – You can refer this blog post to create a custom GUI Plugin using MVC
+                                            </strong>
+                                        </p>
+                                        <h2>
+                                            Create a Controller
+                                        </h2>
+                                        <p>
+
+                                        </p>
+                                        <p>
+                                            <pre>
+                                            <code>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using EPiServer.Find.Cms;
+using EPiServer.Find.Helpers.Text;
+using EPiServer.PlugIn;
+using EPiServer.ServiceLocation;
+using EPiServer.Web;
+using ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.ViewModels;
+
+namespace ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin
+{
+    [GuiPlugIn(
+        Area = PlugInArea.AdminMenu,
+        Url = "/custom-plugins/my-plugin",
+        DisplayName = "Rebuild Find Index")]
+    [Authorize(Roles = "CmsAdmins")]
+    public class RebuildFindIndexController : Controller
+    {
+        public static string Message { get; set; }
+        public static string ExecutionCompleteMessage { get; set; }
+
+        private ISiteDefinitionRepository _siteDefinitionRepository;
+        public RebuildFindIndexController(ISiteDefinitionRepository siteDefinitionRepository)
+        {
+            _siteDefinitionRepository = siteDefinitionRepository ?? ServiceLocator.Current.GetInstance<ISiteDefinitionRepository>();
+
+        }
+        public ActionResult Index()
+        {
+            var siteDefinitions = _siteDefinitionRepository.List();
+            var siteList = new List<SiteDefinition>();
+            if (siteDefinitions.Any())
+            {
+
+                foreach (var site in siteDefinitions)
+                {
+                    siteList.Add(site);
+                }
+
+            }
+
+            var model = new RebuildFindIndexViewModel
+            {
+                Sites = siteList
+            };
+            return View("~/AdminTools/FindIndexPlugin/Views/Index.cshtml", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> InitiateRebuildIndex(Guid[] selectedObjects)
+        {
+            Message = null;
+            ExecutionCompleteMessage = null;
+
+            string selectedSite = Request.Form["SelectedSite"];
+
+            _ = Task.Run(() => StartRebuild(selectedObjects));
+            return View("~/AdminTools/FindIndexPlugin/Views/Index.cshtml");
+        }
+
+        private void StartRebuild(Guid[] selectedSite)
+        {
+            foreach (var site in selectedSite)
+            {
+                SiteDefinition.Current = _siteDefinitionRepository.List().FirstOrDefault(i => i.Id.Equals(site));
+
+                if (SiteDefinition.Current != null && !string.IsNullOrEmpty(SiteDefinition.Current.Name))
+                {
+                    var statusReport = new StringBuilder();
+
+                    // ReIndex the indexes for the sites
+                    ContentIndexer.ReIndexResult reIndexResult = ContentIndexer.Instance.ReIndex(
+                        status =>
+                        {
+                            if (status.IsError)
+                            {
+                                string errorMessage = status.Message.StripHtml();
+                                if (errorMessage.Length > 0)
+                                    statusReport.Append($"{errorMessage}");
+                            }
+
+                            Message =
+                                $"Indexing job [{(SiteDefinition.Current.Name)}] [content]: {status.Message.StripHtml()}";
+                        },
+                        () => false);
+                }
+            }
+
+            ExecutionCompleteMessage = Message;
+        }
+        [HttpGet]
+        public ActionResult GetMessage()
+        {
+            return Json(new { RunningMessage = Message, StopExecution = ExecutionCompleteMessage }, JsonRequestBehavior.AllowGet);
+        }
+    }
+}
+                                                </code>
+</pre>
+                                        </p>
+                                        <h2>
+                                            Create a ViewModel
+                                        </h2>
+                                        <p>
+
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+using System;
+using System.Collections.Generic;
+using EPiServer.Web;
+
+namespace ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.ViewModels
+{
+    public class RebuildFindIndexViewModel
+    {
+        public IEnumerable<Guid> SelectedSites { get; set; }
+        public IEnumerable<SiteDefinition> Sites { get; set; }
+    }
+}
+</code>
+</pre>
+                                        </p>
+                                        <h2>Create a View</h2>
+                                        <p>
+
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@inherits System.Web.Mvc.WebViewPage<ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.ViewModels.RebuildFindIndexViewModel>
+@{
+    Layout = null;
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var messageInterval = setInterval(function () {
+        $.get('/custom-plugins/my-plugin/get-message').done(function (result) {
+            $(".job-started").show();
+            if (result.StopExecution == null) {
+                $('#runningStatus').html(result.RunningMessage);
+
+            } else {
+                $('#runningStatus').html(result.StopExecution);
+                clearInterval(messageInterval);
+                $(".job-started").html("Index rebuild successfully");
+                $("#runningStatus").hide();
+            }
+        });
+    }, 10000)
+</script>
+@if (Model != null && Model.Sites != null && Model.Sites.Any())
+{
+                                            <h2>Site Listing</h2>
+
+    using (Html.BeginForm("InitiateRebuildIndex", "RebuildFindIndex", FormMethod.Post))
+    {
+
+        foreach (var site in Model.Sites)
+        {
+                                            <input type="checkbox" title="@site.Name" name="selectedObjects" value="@site.Id">
+
+                                            <label for="selectedObjects">@site.Name</label>
+                                            <br />
+
+
+
+        }
+        @*@Html.DropDownList("SelectedSite", new SelectList(Model.Sites, "Value", "Text"))*@
+                                            <input type="submit" value="Rebuild" />
+
+    }
+}
+else
+{
+                                            <h2 class="job-started">Schedule job started</h2>
+                                            <div id="runningStatus"></div>
+}
+</code>
+</pre>
+                                        </p>
+                                        <h2>
+                                            Create an initialization Module
+                                        </h2>
+                                        <p>
+
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+using System.Web.Mvc;
+using System.Web.Routing;
+using EPiServer.Framework;
+using EPiServer.Framework.Initialization;
+
+namespace ReindexTargetSite_AdminTool.AdminTools.FindIndexPlugin.Initialization
+{
+    [InitializableModule]
+    [ModuleDependency(typeof(EPiServer.Web.InitializationModule))]
+    public class PluginRouteInitialization : IInitializableModule
+    {
+        public void Initialize(InitializationEngine context)
+        {
+             RouteTable.Routes.MapRoute(
+             null,
+             "custom-plugins/my-plugin",
+             new { controller = "RebuildFindIndex", action = "Index" });
+             RouteTable.Routes.MapRoute(
+                 null,
+                 "custom-plugins/my-plugin/initiate-rebuild-index",
+                 new { controller = "RebuildFindIndex", action = "InitiateRebuildIndex" });
+             RouteTable.Routes.MapRoute(
+                 null,
+                 "custom-plugins/my-plugin/get-message",
+                 new { controller = "RebuildFindIndex", action = "GetMessage" });
+        }
+
+        public void Uninitialize(InitializationEngine context)
+        {
+            //Add uninitialization logic
+        }
+    }
+}
+</code>
+</pre>
+                                    </p>
+                                    <p>
+                                        That’s it from a code point of view. Now you just need to login into you Episerver and go to Admin view and select the new plugin “Rebuild Find Index“
+                                    </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/10/01/2.jpg" />
+                                        </p>
+
+                                        <p>
+                                            Now select the sites and click on the <strong>“Rebuild”</strong> button.
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/10/01/3.jpg" />
+                                        </p>
+                                        <p>It will rebuild the indexes for the selected sites.</p>
+                                        <p>Thanks for reading this blog post I hope it helps</p>
+                                        <p>
+                                            Thanks and regards
+                                        </p>
+                                        <p>Ravindra S. Rathore</p>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="disqus_thread"></div>
+                                <script>
+
+                                    /**
+                                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                    /*
+                                    var disqus_config = function () {
+                                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                    };
+                                    */
+                                    (function () { // DON'T EDIT BELOW THIS LINE
+                                        var d = document, s = d.createElement('script');
+                                        s.src = 'https://http-www-ravindrarathore-com.disqus.com/embed.js';
+                                        s.setAttribute('data-timestamp', +new Date());
+                                        (d.head || d.body).appendChild(s);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="blog_sidebar">
+                                <div w3-include-html="/components/social.html"></div>
+                                <div w3-include-html="/components/recent-post.html"></div>
+                                <div w3-include-html="/components/category.html"></div>
+                                <div w3-include-html="/components/archives.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
