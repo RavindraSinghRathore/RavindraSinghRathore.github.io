@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Hosting a Episerver site in IIS | Episerver for beginners | Ravindra Rathore - Certified Sitecore and Episerver Developer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Episerver Developer, Episerver Developer,Certified Episerver Developer, Certified Episerver Developer, Episerver India, Sitecore India, CMS developer India,Episerver, Sitecore CMS developer, developer, Episerver blog, Ravindra Singh Rathore, Ravindra India, Ravindra Rathore">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Hosting a Episerver site in IIS | Episerver for beginners | Ravindra Rathore - Certified Sitecore and Episerver Developer</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div w3-include-html="/components/preloader.html"></div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Details</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Hosting a Episerver site in IIS | Episerver for beginners</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-lg-8">
+                            <div class="blog_details">
+                                <div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.webp" alt="image"></div>
+                                <div class="blog_content bg_white blog_detail-page">
+                                    <div class="blog_title mb_20 color_primary">
+                                        <h2>Hosting a Episerver site in IIS | Episerver for beginners</h2>
+                                    </div>
+                                    <div class="admin">
+                                        <img src="/images/about/02.jpg" alt="image">
+                                        <span class="color_primary">By - Ravindra Rathore</span>
+                                    </div>
+                                    <div class="date color_primary float-left">21 Frb 2019</div>
+                                    <div class="comments">
+                                       
+                                        <i class="fa fa-comment" aria-hidden="true"></i>
+                                        <span> <a class="color_primary" href="http://www.ravindrarathore.com/blog/2019/02/21/hosting-a-episerver-site-in-iis-episerver-for-beginners.html#disqus_thread">Link</a></span>
+                                    </div>
+                                    <div class="clearfix"><p></p></div>
+                                    <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+
+                                        <p> Hi Guys,</p>
+                                        <p>
+                                            In today’s post, I will describe how to host an Episerver site in the IIS. In my last post, I have created two solutions one is blank site and one Alloy site so I am using the alloy site for this blog post.
+                                        </p>
+                                        <p>
+                                            First of all, you have to attach the Episerver databases in SQL server. Follow the article <a href="https://docs.microsoft.com/en-us/sql/relational-databases/databases/attach-a-database?view=sql-server-2017" target="_blank">here</a> .
+                                        </p>
+                                        <p>
+                                            FYI – The .mdf file exists inside the “App_Data” folder of your solution.
+                                        </p>
+                                        <p>
+                                            Once you are done with the database attach process you need to update the connection of your project so open the web.config file of your project and find and update the connectionString.
+                                        </p>
+                                        <p>
+                                            <pre>
+<code>
+<add name="EPiServerDB" connectionString="Data Source=" YOUR SQL SERVER";Initial Catalog=EPiServerDB_a7a05e67;Integrated Security=False;User ID=USERID;Password =PASSWORD;MultipleActiveResultSets =True" providerName="System.Data.SqlClient" />
+
+
+
+</code>
+</pre>
+                                        </p>
+                                        <p>
+                                            To host a site you need to follow the below steps-
+                                        </p>
+                                        <p>
+                                            <ul class="blog-detail-list">
+                                                <li>Add the site entry in the host file and to do this you need to go to the following path – <strong>“C:\Windows\System32\drivers\etc“</strong></li>
+                                                <li>Open the <strong>“Host”</strong> file in a text editor and add a new entry at the end of your host file- <strong>127.0.0.1 alloy.local</strong> and save the file.</li>
+                                                <li>Now go to your IIS(by start button or by typing the inetmgr in command prompt).</li>
+                                                <li>In the left section, Right-click on the “Sites” and click <strong>“Add Website“</strong>.</li>
+                                                <li>Fill all the fields like- Site name(give a name), Physical path(this is the path of your alloy website physical folder) and Host name(alloy.local)</li>
+                                                <li>Then click “Ok”. </li>
+                                            </ul>
+                                        </p>
+
+
+                                        <p>
+                                            <img src="/images/blog-images/2019/02/21/1.png" />
+
+                                        </p>
+                                        <p>
+                                            <ul class="blog-detail-list">
+                                                <li>Now open the “Alloy” solution in the visual studio and run it(F5/Ctrl+F5).</li>
+                                                <li>Once site is opened in the browser just login into the Episerver CMS using “/episerver” after the site URL(http://localhost:56235/EPiServer)</li>
+                                                <li>Enter your credentials and press enter.</li>
+                                                <li>Now click on the <strong>“CMS”</strong> and then <strong>“Admin“</strong>.</li>
+                                            </ul>
+                                        </p>
+
+                                        <p>
+                                            <img src="/images/blog-images/2019/02/21/2.png" />
+
+                                        </p>
+
+                                        <p>
+                                            <ul class="blog-detail-list">
+                                                <li>Once the admin panel is open.</li>
+                                                <li>Click on the “Config” and then click on the “Manage Websites”.</li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/02/21/3.png" />
+
+                                        </p>
+                                        <p>
+                                            <ul class="blog-detail-list">
+                                                <li>Now click on the “Add Site” button.</li>
+                                                <li>It will give the following screen.</li>
+                                            </ul>
+</p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/02/21/4.png" />
+                                        </p>
+                                        <p>
+                                            <ul class="blog-detail-list">
+                                                <li>Please fill below properties-</li>
+                                                <li>Name – Give any name like – AlloyDemo</li>
+                                                <li>URL- Put the same URL that you added in the host file like – http://alloy.local</li>
+                                                <li>Start page – It is used for selecting the start item of your website. Click on the 3 dots and select the “Start” page item.</li>
+                                                <li>Use site-specific assets – It will enable a folder “For This Site” in the CMS so that content author can upload the site specific assets.</li>
+                                                <li>That’s all. Run the site using the URL – http://alloy.local</li>
+                                            </ul>
+                                        </p>
+                                        <p>
+                                            <img src="/images/blog-images/2019/02/21/5.png" />
+                                        </p>
+                                        <p>
+                                            One last thing you need a license to run the site properly so don’t worry it is free for the developer you can generate 30 days free license from <a href="https://license.episerver.com/public/GenerateDemoLicense.aspx" target="_blank"></a>here. Once it is expired then you can generate is again from the same URL.
+                                        </p>
+                                        <p>
+                                            Once you received the license please put this at the root of your website and you are done.
+                                        </p>
+                                        <p>Happy Reading.</p>
+                                        <p>
+                                            Thanks and regards
+                                        </p>
+                                        <p>Ravindra S. Rathore</p>
+
+
+                                    </div>
+
+                                </div>
+                                <div id="disqus_thread"></div>
+                                <script>
+
+                                    /**
+                                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                    /*
+                                    var disqus_config = function () {
+                                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                    };
+                                    */
+                                    (function () { // DON'T EDIT BELOW THIS LINE
+                                        var d = document, s = d.createElement('script');
+                                        s.src = 'https://http-www-ravindrarathore-com.disqus.com/embed.js';
+                                        s.setAttribute('data-timestamp', +new Date());
+                                        (d.head || d.body).appendChild(s);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-lg-4">
+                            <div class="blog_sidebar">
+                                <div w3-include-html="/components/social.html"></div>
+                                <div w3-include-html="/components/recent-post.html"></div>
+                                <div w3-include-html="/components/category.html"></div>
+                                <div w3-include-html="/components/archives.html"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
