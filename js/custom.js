@@ -29,7 +29,7 @@
 
     var $body = $("body"),
         $window = $(window),
-        $contact = $('#contact-form')
+        $contact = $('#contact-form');
         
         $body.scrollspy({
           target: ".navbar-collapse",
