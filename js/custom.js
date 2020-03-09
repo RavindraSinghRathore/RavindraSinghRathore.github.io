@@ -292,27 +292,28 @@ if($contact.length){
             },
 
             submitHandler: function (form) {
-                $('#send').attr({'disabled' : 'true', 'value' : 'Sending...' });
-                $.ajax({
-                    type: "POST",
-                    url: "email.php",
-                    data: $(form).serialize(),
-                    success: function () {
-                        $('#send').removeAttr('disabled').attr('value', 'Send');
-                        $( "#success").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#success").slideUp( "slow" );
-                        }, 5000);
-                        form.reset();
-                    },
-                    error: function() {
-                        $('#send').removeAttr('disabled').attr('value', 'Send');
-                        $( "#error").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#error").slideUp( "slow" );
-                        }, 5000);
-                    }
-                });
+                $('#send').attr({ 'disabled': 'true', 'value': 'Sending...' });
+                sendEmail(form);
+                //$.ajax({
+                //    type: "POST",
+                //    url: "email.php",
+                //    data: $(form).serialize(),
+                //    success: function () {
+                //        $('#send').removeAttr('disabled').attr('value', 'Send');
+                //        $( "#success").slideDown( "slow" );
+                //        setTimeout(function() {
+                //        $( "#success").slideUp( "slow" );
+                //        }, 5000);
+                //        form.reset();
+                //    },
+                //    error: function() {
+                //        $('#send').removeAttr('disabled').attr('value', 'Send');
+                //        $( "#error").slideDown( "slow" );
+                //        setTimeout(function() {
+                //        $( "#error").slideUp( "slow" );
+                //        }, 5000);
+                //    }
+                //});
                 return false; // required to block normal submit since you used ajax
             }
 
@@ -349,6 +350,59 @@ function includeHTML() {
             return;
         }
     }
+    }
+
+    function sendEmail(form) {
+        var data = $(form).serialize();
+        
+        Email.send({
+            Host: "smtp.elasticemail.com",
+            Username: "ravindrarathore19@gmail.com",
+            Password: "599A74C9D869140591842D15A5E3127AC398",
+            To: 'info@ravindrarathore.com',
+            From: "ravindrarathore19@gmail.com",
+            Subject: "Enquiry on ravindrarathore.com",
+            Body: deparam(data)
+        }).then(
+            function (x) {
+                if (x == "OK") {
+
+                    $('#send').removeAttr('disabled').attr('value', 'Send');
+                    $("#success").slideDown("slow");
+                    setTimeout(function () {
+                        $("#success").slideUp("slow");
+                    }, 5000);
+                    form.reset();
+
+                }
+                else {
+                    $('#send').removeAttr('disabled').attr('value', 'Send');
+                    $("#error").slideDown("slow");
+                    setTimeout(function () {
+                        $("#error").slideUp("slow");
+                    }, 5000);
+                }
+
+            }
+        );
 }
+    function deparam(query) {
+        var pairs, i, keyValuePair, key, value, map = {};
+        // remove leading question mark if its there
+        if (query.slice(0, 1) === '?') {
+            query = query.slice(1);
+        }
+        if (query !== '') {
+            pairs = query.split('&');
+            for (i = 0; i < pairs.length; i += 1) {
+                keyValuePair = pairs[i].split('=');
+                key = decodeURIComponent(keyValuePair[0]);
+                value = (keyValuePair.length > 1) ? decodeURIComponent(keyValuePair[1]) : undefined;
+                map[key] = value;
+            }
+        }
+        return map;
+    }
+
 })(jQuery);
 
