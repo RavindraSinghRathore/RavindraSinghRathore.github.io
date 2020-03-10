@@ -1158,12 +1158,14 @@ ul#menu li a{
 .admin span{
   padding-right: 15px;
   line-height: 39px;
+}
+.blog-listing-home .admin span {
     font-size: 12px;
 }
-.date{
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 50px;
+.date {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 50px;
 }
 
 /*===============================================================================
@@ -2180,9 +2182,12 @@ label.radios {
   .admin span,.date{
     font-size: 12px;
   }
-  .admin{
-    padding: 0px;
-  }
+    .blog_details .admin span, .date {
+        font-size: 15px;
+    }
+    .admin {
+        padding: 0px;
+    }
   .date{
     line-height: 38px;
   }
@@ -2516,6 +2521,7 @@ label.radios {
   .banner_title {
       font-size: 20px;
   }
+
   .mainbanner_content p {
       font-size: 14px;
       letter-spacing: 1px;
