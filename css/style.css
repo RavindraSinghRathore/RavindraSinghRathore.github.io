@@ -2506,8 +2506,8 @@ label.radios {
 ============================================================*/
 @media (max-width: 575px){
   .mainbanner_content h1 {
-      font-size: 18px;
-      line-height: 28px;
+      font-size: 16px;
+      line-height: 24px;
   }
   .counter,.blog_item{
     margin-bottom: 30px;
