@@ -1158,6 +1158,7 @@ ul#menu li a{
 .admin span{
   padding-right: 15px;
   line-height: 39px;
+    font-size: 12px;
 }
 .date{
   font-size: 16px;
