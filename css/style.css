@@ -792,7 +792,7 @@ ul#menu li a{
   margin-left: 0;
 }
 .count-num{
-  float: left;
+  float: none;
   display: contents;
 }
 .counting_digit span{
