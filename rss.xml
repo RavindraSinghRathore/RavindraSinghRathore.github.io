@@ -11,7 +11,7 @@ Source page: http://www.ravindrarathore.com/blog.html</description>
 			<title>Use of Episerver URL property in PropertyList</title>
 			<link>http://www.ravindrarathore.com/blog/2020/04/15/use-of-episerver-url-class-in-propertyList.html</link>
 			<description>Hi Guys, As you all know that some time we need to define custom properties model and then use those properties in Episerver CMS and for that we are using PropertyList.But PropertyList doesn't support complex property and we need custom implementation to support this…</description>
-			<pubDate>Wed, 15 April 2020 12:13:10 -0000</pubDate>
+			<pubDate>Wed, 15 Apr 2020 12:13:10 -0000</pubDate>
 			<guid isPermaLink="false">http://www.ravindrarathore.com/blog/2020/04/15/use-of-episerver-url-class-in-propertyList.html</guid>
 		</item>
 		<item>
