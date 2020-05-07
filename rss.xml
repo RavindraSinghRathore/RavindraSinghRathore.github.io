@@ -53,21 +53,21 @@ Source page: http://www.ravindrarathore.com/blog.html</description>
 			<title>Reindex a target site in Find (Schedule Job)</title>
 			<link>http://www.ravindrarathore.com/blog/2019/09/29/reindex-a-target-site-in-find-schedule-job.html</link>
 			<description>Hey Guys, We all use Episerver Find as a search provider and it is a very handy tool for the site search. I also prefer Find over all the other search provider in Epi. But index rebuild is very time consuming if you have multiple sites hosted in the Episerver CMS. I am working on…</description>
-			<pubDate>Sun, 29 Sept 2019 12:01:55 -0000</pubDate>
+			<pubDate>Sun, 29 Sep 2019 12:01:55 -0000</pubDate>
 			<guid isPermaLink="false">http://www.ravindrarathore.com/blog/2019/09/29/reindex-a-target-site-in-find-schedule-job.html</guid>
 		</item>
 		<item>
 			<title>The all new improved Paasportal on Episerver DXC services</title>
 			<link>http://www.ravindrarathore.com/blog/2019/09/16/the-all-new-improved-paasportal-on-episerver-dxc-services.html</link>
 			<description>Hi All, If you haven't visited the Paasportal in last few days or weeks then there are some new features those are added in Paasportal can be very handy for the developers More tabs for the categorization Now you will see these three tabs- DeploymentsHostnamesTroubleshoot Deployments tab Deployment This tab has the deployment options from…</description>
-			<pubDate>Mon, 16 Sept 2019 11:46:55 -0000</pubDate>
+			<pubDate>Mon, 16 Sep 2019 11:46:55 -0000</pubDate>
 			<guid isPermaLink="false">http://www.ravindrarathore.com/blog/2019/09/16/the-all-new-improved-paasportal-on-episerver-dxc-services.html</guid>
 		</item>
 		<item>
 			<title>An easy way to manage static text in Episerver CMS</title>
 			<link>http://www.ravindrarathore.com/blog/2019/09/11/an-easy-way-to-manage-static-text-in-episerver-cms.html</link>
 			<description>Hi All, Today, I am writing a blog post to create a dictionary block to manage static text like - "Read More, Learn more, View More, etc...". This is very helpful when you have multiple CTA blocks or pages those have this kind of static text and you want to give the control to the…</description>
-			<pubDate>Wed, 16 Sept 2019 11:31:55 -0000</pubDate>
+			<pubDate>Wed, 16 Sep 2019 11:31:55 -0000</pubDate>
 			<guid isPermaLink="false">http://www.ravindrarathore.com/blog/2019/09/11/an-easy-way-to-manage-static-text-in-episerver-cms.html</guid>
 		</item>
 		<item>
@@ -81,21 +81,21 @@ Source page: http://www.ravindrarathore.com/blog.html</description>
 			<title>Disallow duplicate items in the Episerver ContentArea Property</title>
 			<link>http://www.ravindrarathore.com/blog/2019/07/22/disallow-duplicate-items-in-the-episerver-contentarea-property.html</link>
 			<description>Hey guys, In past i learned about the validation attributes and to try it out i have created a validation attribute for disabling the duplicate items(page/block/media) in the ContentArea property. Yesterday some of my colleague asked me about this so thought to write this post. So first of all i have created a class called…</description>
-			<pubDate>Mon, 22 July 2019 12:20:22 -0000</pubDate>
+			<pubDate>Mon, 22 Jul 2019 12:20:22 -0000</pubDate>
 			<guid isPermaLink="false">http://www.ravindrarathore.com/blog/2019/07/22/disallow-duplicate-items-in-the-episerver-contentarea-property.html</guid>
 		</item>
 		<item>
 			<title>Render Episerver Page Item tree on View</title>
 			<link>http://www.ravindrarathore.com/blog/2019/06/24/render-episerver-page-item-tree-on-view.html</link>
 			<description>Hi All, I have a scenario in our website where I need to display the Episerver tree on our view. Like- So I thought that we can use the "GetDescendents" method and it will render the tree but i was wrong. It basically give you all the page items in a single list so you…</description>
-			<pubDate>Mon, 24 June 2019 12:05:22 -0000</pubDate>
+			<pubDate>Mon, 24 Jun 2019 12:05:22 -0000</pubDate>
 			<guid isPermaLink="false">http://www.ravindrarathore.com/blog/2019/06/24/render-episerver-page-item-tree-on-view.html</guid>
 		</item>
 		<item>
 			<title>Adding a Start Page | Episerver for beginners</title>
 			<link>http://www.ravindrarathore.com/blog/2019/03/14/adding-a-start-page-episerver-for-beginners.html</link>
 			<description>Hey Guys, To create first page type in your EmptySite solution that is created in my last blog post. Please follow the below steps- Open the EmptySite solution in visual studio.Right click on the pages folder inside Models-&gt;Pages. Please refer below screenshot for reference. Now click Add-&gt; New Item.Now select "Episerver" template from installed template.Then…</description>
-			<pubDate>Thu, 14 March 2019 11:50:22 -0000</pubDate>
+			<pubDate>Thu, 14 Mar 2019 11:50:22 -0000</pubDate>
 			<guid isPermaLink="false">http://www.ravindrarathore.com/blog/2019/03/14/adding-a-start-page-episerver-for-beginners.html</guid>
 		</item>
 		<item>
