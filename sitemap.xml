@@ -9,14 +9,32 @@
 
 <url>
   <loc>http://www.ravindrarathore.com/</loc>
-  <lastmod>2020-03-11T12:08:04+00:00</lastmod>
+  <lastmod>2020-05-25T12:08:04+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>http://www.ravindrarathore.com/blog.html</loc>
-  <lastmod>2020-03-11T12:08:04+00:00</lastmod>
+  <lastmod>2020-03-25T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
+<url>
+  <loc>http://www.ravindrarathore.com/blog/2020/05/25/unlock-locked-episerver-commerce-user-account</loc>
+  <lastmod>2020-05-25T12:08:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>http://www.ravindrarathore.com/blog/2020/05/23/reset-or-update-episerver-commerce-manager-admin-password</loc>
+  <lastmod>2020-05-25T12:08:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+<url>
+  <loc>http://www.ravindrarathore.com/blog/2020/04/15/use-of-episerver-url-class-in-propertyList</loc>
+  <lastmod>2020-04-25T12:08:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
 <url>
   <loc>http://www.ravindrarathore.com/blog/2019/12/15/disable-indexing-for-specific-item-in-episerver-find</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
