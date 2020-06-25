@@ -402,6 +402,11 @@ function includeHTML() {
         }
         return map;
     }
-
+    
 })(jQuery);
-
+$(document).on('click', '.search-page-search-submit', function() {
+  var term = $("#txtSearchTerm").val();        
+  if (term != undefined && term != null) {
+      window.location = '/search-result.html?q=' + term;
+  }
+})
