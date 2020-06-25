@@ -164,9 +164,8 @@
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
 }
-console.log($.urlParam('q'));
-$("#txtSearchTerm").val($.urlParam('q').replace('//g'," "))
-        console.log($("#txtSearchTerm").val());
+
+$("#txtSearchTerm").val($.urlParam('q').replace(new RegExp("\\+","g"),' '));
 			Search($("#txtSearchTerm").val(),0);
 		</script>
 

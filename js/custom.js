@@ -405,7 +405,7 @@ function includeHTML() {
     
 })(jQuery);
 $(document).on('click', '.search-page-search-submit', function() {
-  var term = $("#txtSearchTerm").val();        
+  var term = $("#txtSearchTerm").val().replace(/ /g,"+");        
   if (term != undefined && term != null) {
       window.location = '/search-result.html?q=' + term;
   }
