@@ -356,10 +356,10 @@ function includeHTML() {
         
         Email.send({
             Host: "smtp.elasticemail.com",
-            Username: "info@ravindrarathore.com",
-            Password: "92E3DC41DCA63348C33D1298215992F3C9BE",
+            Username: "ravindrarathore19@gmail.com",
+            Password: "A71DDFDB32BB8E7120B7C33C7703BF302FEF",
             To: 'info@ravindrarathore.com',
-            From: "info@ravindrarathore.com",
+            From: "ravindrarathore19@gmail.com",
             Subject: "Enquiry on ravindrarathore.com",
             Body: deparam(data)
         }).then(
