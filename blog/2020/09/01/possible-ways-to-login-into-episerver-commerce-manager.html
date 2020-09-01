@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160045854-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-160045854-1');
+    </script>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Possible ways to reset the admin password, unlock the admin account, update the admin password or login into Episerver commerce account">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Possible ways to reset the admin password, unlock the admin account, update the admin password or login into Episerver commerce account, unlock commerce user, locked user account, user account episerver, locked episerver account, reset password">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Possible ways to login into Episerver Commerce Manager</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div class="preloader">
+        <div class="lds-css ng-scope">
+            <div class="lds-spinner" style="width: 100%;height:100%">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Detail</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Possible ways to login into Episerver Commerce Manager</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-lg-8">
+<div class="blog_details">
+<div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.png" alt="image" /></div>
+<div class="blog_content bg_white blog_detail-page">
+<div class="blog_title mb_20 color_primary">
+<h2>Possible ways to login into Episerver Commerce Manager</h2>
+</div>
+<div class="admin"><img src="/images/about/02.jpg" alt="image" /> <span class="color_primary">By - Ravindra Rathore</span></div>
+<div class="date color_primary float-left">01 Sep 2020</div>
+<div class="comments"><a class="color_primary" href="http://www.ravindrarathore.com/blog/2020/09/01/possible-ways-to-login-into-episerver-commerce-manager.html#disqus_thread">Link</a></div>
+<div class="clearfix">&nbsp;</div>
+<div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+<p>Hi Guys,</p>
+<p>Today I am going to tell you all the possible solutions that you can try if you don't have admin access to Episerver Commerce account using some small SQL queries.</p>
+<p>This is useful when you have restored the databases from any other server or you are working on a local environment setup for further development. Using below queries you can set the admin password, unlock admin user, update and approve the admin account and add the admin user to administrators role.</p>
+<p>So for this, you need to find two values-</p>
+<ol>
+<li><strong>Database Name</strong> - This is the name of your commerce database.</li>
+<li><strong>Application Name</strong> - This is the name of the application that is stored in the commerce database.</li>
+</ol>
+<p>Please refer my previous blog post to see how you can retrieve these values <a href="http://www.ravindrarathore.com/blog/2020/05/23/reset-or-update-episerver-commerce-manager-admin-password.html" target="_blank" rel="noopener">Link</a></p>
+<p>If you followed my previous post then now you are almost done with requirement gathering.</p>
+<p>So now again go back to the SQL Server Management Studio and select the commerce database.</p>
+<p>Right-click on the database and click"<strong>New Query</strong>". The query editor will open so copy and paste the below queries in this editor and update the highlighted values that gathered in the above steps.&nbsp;</p>
+<p>These are the standard queries that you can try -</p>
+<h2>Set Commerce Admin Password</h2>
+<pre><code>
+USE <strong>[EcfSqlConnection_0fc2aba3]</strong>
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[aspnet_Membership_SetPassword]
+		@ApplicationName = N'<strong>ECApplication</strong>',
+		@UserName = N'admin',
+		@NewPassword = N'password1',
+		@PasswordSalt = N'salt',
+		@CurrentTimeUtc = N'1/1/2019',
+		@PasswordFormat = 0
+
+SELECT	'Return Value' = @return_value
+
+GO
+                                                                                    </code></pre>
+<p>&nbsp;</p>
+<h2>Unlock Commerce Admin User</h2>
+<pre><code>
+USE <strong>[EcfSqlConnection_0fc2aba3]</strong>
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[aspnet_Membership_UnlockUser]
+		@ApplicationName = N'<strong>ECApplication</strong>',
+		@UserName = N'admin'
+
+SELECT	'Return Value' = @return_value
+
+GO
+                                                                                    </code></pre>
+<p>&nbsp;</p>
+<h2>Update and Approve Commerce Admin Account Information</h2>
+<pre><code>
+USE <strong>[EcfSqlConnection_0fc2aba3]</strong>
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[aspnet_Membership_UpdateUser]
+		@ApplicationName = N'<strong>ECApplication</strong>',
+		@UserName = N'admin',
+		@Email = 'no-reply@admin.com',
+		@Comment = NULL,
+		@IsApproved = 1,
+		@LastLoginDate = '1/1/2018',
+		@LastActivityDate = '1/1/2018',
+		@UniqueEmail = NULL,
+		@CurrentTimeUtc = NULL
+
+SELECT	'Return Value' = @return_value
+
+GO
+                                                                                    </code></pre>
+<p>&nbsp;</p>
+<h2>Add Admin Account to Administrators Role</h2>
+<pre><code>
+USE <strong>[EcfSqlConnection_0fc2aba3]</strong>
+GO
+
+DECLARE	@return_value int
+
+EXEC	@return_value = [dbo].[aspnet_UsersInRoles_AddUsersToRoles]
+		@ApplicationName = N'<strong>ECApplication</strong>',
+		@UserNames = N'admin',
+		@RoleNames = N'Administrators',
+		@CurrentTimeUtc = N'1/1/2019'
+
+SELECT	'Return Value' = @return_value
+
+GO
+                                                                                    </code></pre>
+<p>&nbsp;</p>
+<p>Try to login again with your credentials</p>
+
+<p><strong>FYI</strong> - If you are not sure what is missing then fire all these queries and then try to login</p>
+<p>Thanks for reading this blog post I hope it helps</p>
+<p>Thanks and regards</p>
+<p>Ravindra S. Rathore</p>
+</div>
+</div>
+<div id="disqus_thread">&nbsp;</div>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</div>
+<div class="col-md-4 col-lg-4">
+    <div class="blog_sidebar">
+    <div w3-include-html="/components/social.html"></div>
+    <div w3-include-html="/components/recent-post.html"></div>
+    <div w3-include-html="/components/category.html"></div>
+    <div w3-include-html="/components/archives.html"></div>
+</div></div>
+</div>
+</div>
+</section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
