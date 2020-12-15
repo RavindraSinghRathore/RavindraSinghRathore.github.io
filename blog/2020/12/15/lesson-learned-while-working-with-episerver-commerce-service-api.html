@@ -166,7 +166,7 @@ namespace Test.Web
 <ol>
     <li>
         <p>
-            <strong>Update Service API issue</strong> – As you all know Episerver exposed a list of endpoints for performing the CRUD operations but while using one of its service API endpoints I noticed that it overwrites the data instead of update.
+            <strong>Update Service API issue</strong> – As you all know Episerver exposed a list of endpoints for performing the CRUD operations (<a href="https://world.episerver.com/documentation/class-libraries/rest-apis/service-api/" target="_blank">here</a>) but while using one of its service API endpoints I noticed that it overwrites the data instead of update.
             <br/>
             Ex- Like you have a product or node that has Metadata values in multiple languages (en-US, en-CA, etc..) and data is coming from multiple files so in first call it will create the node but when you fetch the node of en-US and try to update it with en-CA language values it creates a new item and put the en-CA language values only.
             <br/>
