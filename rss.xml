@@ -8,6 +8,13 @@ Source page: http://www.ravindrarathore.com/blog.html</description>
 		<language>en</language>
 		<lastBuildDate>Tue, 01 Sep 2020 00:13:10 -0000</lastBuildDate>
 		<item>
+			<title>Lesson learned while working with Episerver Commerce Service API</title>
+			<link>http://www.ravindrarathore.com/blog/2020/12/15/lesson-learned-while-working-with-episerver-commerce-service-api.html</link>
+			<description>Hi Guys, Recently I got a chance to work with Episerver Commerce Service API to import the Catalogs and Products from XML to the Commerce manager. Episerver provided very detailed documentation for the APIs so you will not face issues while working with these APIs....</description>
+			<pubDate>Tue, 15 Dec 2020 00:13:10 -0000</pubDate>
+			<guid isPermaLink="false">http://www.ravindrarathore.com/blog/2020/12/15/lesson-learned-while-working-with-episerver-commerce-service-api.html</guid>
+		</item>
+		<item>
 			<title>Possible ways to login into Episerver Commerce Manager</title>
 			<link>http://www.ravindrarathore.com/blog/2020/09/01/possible-ways-to-login-into-episerver-commerce-manager.html</link>
 			<description>Hi Guys, Today I am going to tell you all the possible solutions that you can try if you don't have admin access to Episerver Commerce account using some small SQL queries. This is useful when you have restored the databases from any other server or you are working on a local environment setup for further development...</description>

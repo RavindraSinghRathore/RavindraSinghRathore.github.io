@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160045854-1"></script>
+    <script> 
+        window.dataLayer = window.dataLayer || []; 
+         function gtag() { dataLayer.push(arguments); }
+         gtag('js', new Date());
+
+         gtag('config', 'UA-160045854-1'); 
+     </script>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Lesson learned while working with Episerver Commerce Service API, common issues when setting episerver service api">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Lesson learned while working with Episerver Commerce Service API, common issues when setting episerver service api, /episerverapi/token, token 404">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Lesson learned while working with Episerver Commerce Service API</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div class="preloader">
+        <div class="lds-css ng-scope">
+            <div class="lds-spinner" style="width: 100%;height:100%">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Detail</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Lesson learned while working with Episerver Commerce Service API</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-lg-8">
+<div class="blog_details">
+<div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.png" alt="image" /></div>
+<div class="blog_content bg_white blog_detail-page">
+<div class="blog_title mb_20 color_primary">
+<h2>Lesson learned while working with Episerver Commerce Service API</h2>
+</div>
+<div class="admin"><img src="/images/about/02.jpg" alt="image" /> <span class="color_primary">By - Ravindra Rathore</span></div>
+<div class="date color_primary float-left">15 Dec 2020</div>
+<div class="comments"><a class="color_primary" href="http://www.ravindrarathore.com/blog/2020/12/15/lesson-learned-while-working-with-episerver-commerce-service-api.html#disqus_thread">Link</a></div>
+<div class="clearfix">&nbsp;</div>
+<div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+<p>Hi Guys,</p>
+<p>Recently I got a chance to work with Episerver Commerce Service API to import the Catalogs and Products from XML to the Commerce manager.</p>
+<p>Episerver provided very detailed documentation for the APIs so you will not face issues while working with these APIs.</p>
+<p>Still, I am sharing some issues while configuring the Episerver Commerce Service API and while importing the data to the Commerce manager.</p>
+
+
+<h3>Installation/Configuration related issues-</h3>
+<p>Episerver provided very detailed documentation related to installation. You can find it <a href="https://world.episerver.com/documentation/developer-guides/Episerver-Service-API/installation-and-configuration/" target="_blank">here</a> </p>
+
+    <ol>
+        <li>
+            <p><strong>Token route (/episerverapi/token) returns 404 </strong>- You may face one issue related to OWIN startup and because of this your Token route (/episerverapi/token) returns 404. Its a common issue that lots of developers while working with service APIs.
+            <br/> <strong>   Fix </strong>–  While Configuring OWIN startup class make sure you put initial it with 
+             <pre><code> [assembly: OwinStartup(typeof(ElectroluxConnect.Web.Startup))]</code></pre>
+             <br/> <strong>   Example </strong>–
+             <br/>
+             <pre><code>using EPiServer.ServiceApi.Owin;
+using Microsoft.Owin;
+using Owin;
+              
+<strong>[assembly: OwinStartup(typeof(ElectroluxConnect.Web.Startup))]</strong>
+namespace Test.Web
+{
+        public class Startup
+        {
+            public void Configuration(IAppBuilder app)
+            {
+                // Enable bearer token authentication using Membership for Service Api
+                app.UseServiceApiMembershipTokenAuthorization();
+            }
+        }
+}</code></pre>
+            <br/>
+            <strong>OR</strong> Add the below lines in web.config inside app setting
+            <pre><code>&lt;add key="owin:AppStartup" value="Web.Startup, Web" /&gt;
+&lt;add key="owin:AutomaticAppStartup" value="true" /&gt;</code></pre>
+            </p>
+        </li>
+    </ol>
+
+<p>
+   <strong> FYI </strong>– After adding this class or settings in web.config make you reset your IIS or try running your solution in debug mode(Press F5) because sometimes your site did not detect these changes and you will still face the same issue.
+</p>
+<p>
+    You may face some common issues and Māris already written a great article <a href="https://marisks.net/2016/03/17/common-issues-when-setting-episerver-service-api/" target="_blank">here</a> on it.
+</p>
+<h3>Service API Issues</h3>
+<ol>
+    <li>
+        <p>
+            <strong>Update Service API issue</strong> – As you all know Episerver exposed a list of endpoints for performing the CRUD operations but while using one of its service API endpoints I noticed that it overwrites the data instead of update.
+            <br/>
+            Ex- Like you have a product or node that has Metadata values in multiple languages (en-US, en-CA, etc..) and data is coming from multiple files so in first call it will create the node but when you fetch the node of en-US and try to update it with en-CA language values it creates a new item and put the en-CA language values only.
+            <br/>
+            <br/>
+            <strong>Fix</strong> -
+            <br/>
+            <ol>
+                <li>
+                    Best way to merge all the XML files into one file and merge language node/products in a single node using the custom code and manually and then perform the create operation.
+                </li>
+                <li>
+                    If you can’t merge the files since it has lots of data or because of any other reason than the other way is while performing the create/update operation from XML files fetch the existing item and its Metadata using  GET service API and perform the merge here and then send the final object with create/update call.
+                </li>
+            </ol>
+        </p>
+    </li>
+</ol>
+
+<p>Thanks for reading this blog post I hope it helps</p>
+<p>Thanks and regards</p>
+<p>Ravindra S. Rathore</p>
+</div>
+</div>
+<div id="disqus_thread">&nbsp;</div>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</div>
+<div class="col-md-4 col-lg-4">
+    <div class="blog_sidebar">
+    <div w3-include-html="/components/social.html"></div>
+    <div w3-include-html="/components/recent-post.html"></div>
+    <div w3-include-html="/components/category.html"></div>
+    <div w3-include-html="/components/archives.html"></div>
+</div></div>
+</div>
+</div>
+</section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
