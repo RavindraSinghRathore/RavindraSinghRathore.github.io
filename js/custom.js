@@ -353,37 +353,41 @@ function includeHTML() {
 
     function sendEmail(form) {
         var data = $(form).serialize();
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6Ld2igcaAAAAAM8L7qyFhamwRgaltE32WmmEt6e7', {action: 'submit'}).then(function(token) {
+            Email.send({
+              Host: "smtp.elasticemail.com",
+              Username: "ravindrarathore19@gmail.com",
+              Password: "A71DDFDB32BB8E7120B7C33C7703BF302FEF",
+              To: 'info@ravindrarathore.com',
+              From: "ravindrarathore19@gmail.com",
+              Subject: "Enquiry on ravindrarathore.com",
+              Body: deparam(data)
+          }).then(
+              function (x) {
+                  if (x == "OK") {
+  
+                      $('#send').removeAttr('disabled').attr('value', 'Send');
+                      $("#success").slideDown("slow");
+                      setTimeout(function () {
+                          $("#success").slideUp("slow");
+                      }, 5000);
+                      form.reset();
+  
+                  }
+                  else {
+                      $('#send').removeAttr('disabled').attr('value', 'Send');
+                      $("#error").slideDown("slow");
+                      setTimeout(function () {
+                          $("#error").slideUp("slow");
+                      }, 5000);
+                  }
+  
+              }
+          );
+          });
+        });
         
-        Email.send({
-            Host: "smtp.elasticemail.com",
-            Username: "ravindrarathore19@gmail.com",
-            Password: "A71DDFDB32BB8E7120B7C33C7703BF302FEF",
-            To: 'info@ravindrarathore.com',
-            From: "ravindrarathore19@gmail.com",
-            Subject: "Enquiry on ravindrarathore.com",
-            Body: deparam(data)
-        }).then(
-            function (x) {
-                if (x == "OK") {
-
-                    $('#send').removeAttr('disabled').attr('value', 'Send');
-                    $("#success").slideDown("slow");
-                    setTimeout(function () {
-                        $("#success").slideUp("slow");
-                    }, 5000);
-                    form.reset();
-
-                }
-                else {
-                    $('#send').removeAttr('disabled').attr('value', 'Send');
-                    $("#error").slideDown("slow");
-                    setTimeout(function () {
-                        $("#error").slideUp("slow");
-                    }, 5000);
-                }
-
-            }
-        );
 }
     function deparam(query) {
         var pairs, i, keyValuePair, key, value, map = {};
