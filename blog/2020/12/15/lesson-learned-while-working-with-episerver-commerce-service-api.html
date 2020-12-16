@@ -129,14 +129,14 @@
         <li>
             <p><strong>Token route (/episerverapi/token) returns 404 </strong>- You may face one issue related to OWIN startup and because of this your Token route (/episerverapi/token) returns 404. Its a common issue that lots of developers while working with service APIs.
             <br/> <strong>   Fix </strong>–  While Configuring OWIN startup class make sure you put initial it with 
-             <pre><code> [assembly: OwinStartup(typeof(ElectroluxConnect.Web.Startup))]</code></pre>
+             <pre><code> [assembly: OwinStartup(typeof(Test.Web.Startup))]</code></pre>
              <br/> <strong>   Example </strong>–
              <br/>
              <pre><code>using EPiServer.ServiceApi.Owin;
 using Microsoft.Owin;
 using Owin;
               
-<strong>[assembly: OwinStartup(typeof(ElectroluxConnect.Web.Startup))]</strong>
+<strong>[assembly: OwinStartup(typeof(Test.Web.Startup))]</strong>
 namespace Test.Web
 {
         public class Startup
