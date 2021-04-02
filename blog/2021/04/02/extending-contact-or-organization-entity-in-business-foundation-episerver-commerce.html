@@ -1,0 +1,373 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160045854-1"></script>
+    <script> 
+        window.dataLayer = window.dataLayer || []; 
+         function gtag() { dataLayer.push(arguments); }
+         gtag('js', new Date());
+
+         gtag('config', 'UA-160045854-1'); 
+     </script>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Extending Contact or Organization entity in business foundation Episerver commerce">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Extending Contact or Organization entity in business foundation Episerver commerce, add new fields Contact commerce">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Extending Contact or Organization entity in business foundation Episerver commerce</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div class="preloader">
+        <div class="lds-css ng-scope">
+            <div class="lds-spinner" style="width: 100%;height:100%">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Detail</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Extending Contact or Organization entity in business foundation Episerver commerce</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-lg-8">
+<div class="blog_details">
+<div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.png" alt="image" /></div>
+<div class="blog_content bg_white blog_detail-page">
+<div class="blog_title mb_20 color_primary">
+<h2>Extending Contact or Organization entity in business foundation Episerver commerce</h2>
+</div>
+<div class="admin"><img src="/images/about/02.jpg" alt="image" /> <span class="color_primary">By - Ravindra Rathore</span></div>
+<div class="date color_primary float-left">02 April 2021</div>
+<div class="comments"><a class="color_primary" href="http://www.ravindrarathore.com/blog/2021/04/02/extending-contact-or-organization-entity-in-business-foundation-episerver-commerce.html#disqus_thread">Link</a></div>
+<div class="clearfix">&nbsp;</div>
+<div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+<p>Hi Guys,</p>
+<p>Business Foundation is the main part of Episerver commerce solution because it is used for contact management, organization management but some time we need to extend its out of the box entity properties and add some custom properties according to our needs. </p>
+<p>Today I am going to provide you the simple solution for this where you can add your custom properties in this so for this you need to follow below steps-</p>
+
+<h4>Step 1</h4>
+<p>Create a new class called “BusinessFoundationField” and defined some properties in this.</p>
+<p>
+<pre><code>using Mediachase.BusinessFoundation.Data.Meta.Management;
+
+namespace ABCProject.Web.Features.Utilities.MetaModelExtensions.Models
+{
+    public class BusinessFoundationField
+    {
+        public string Name { get; set; }
+
+        public string FriendlyName { get; set; }
+
+        public string Type { get; set; }
+
+        public AttributeCollection Attributes { get; set; }
+    }
+}</code></pre>
+</p>
+   
+<h4>Step 2</h4>
+<p>Create a new interface called “IBusinessFoundationService”</p>
+<p>
+<pre><code>using ABCProject.Web.Features.Utilities.MetaModelExtensions.Models;
+using Mediachase.BusinessFoundation.Data;
+
+namespace ABCProject.Web.Features.Utilities.MetaModelExtensions.Services
+{
+    public interface IBusinessFoundationService
+    {
+        void CreateField(DataContext dataContext, BusinessFoundationField config, string className);
+    }
+}</code></pre>
+</p>
+<h4>Step 3</h4>
+<p>Now create one class called “BusinessFoundationService” using this interface.</p>
+<p>
+<pre><code>using System;
+using ABCProject.Web.Features.Utilities.MetaModelExtensions.Models;
+using Mediachase.BusinessFoundation.Data;
+using Mediachase.BusinessFoundation.Data.Meta.Management;
+
+namespace ABCProject.Web.Features.Utilities.MetaModelExtensions.Services
+{
+    public class BusinessFoundationService : IBusinessFoundationService
+    {
+        public void CreateField(DataContext dataContext, BusinessFoundationField config, string className)
+        {
+            using (MetaClassManagerEditScope scope = dataContext.MetaModel.BeginEdit())
+            {
+                var metaClass = dataContext.MetaModel.MetaClasses[className];
+                if (metaClass == null)
+                    return;
+
+                var metaField = metaClass.Fields[config.Name];
+                if (metaField == null)
+                {
+                    metaField = metaClass.CreateMetaField(config.Name, config.FriendlyName, config.Type, config.Attributes);
+                    scope.SaveChanges();
+                }
+                else if (!string.Equals(metaField.FriendlyName, config.FriendlyName, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    metaField.FriendlyName = config.FriendlyName;
+                    scope.SaveChanges();
+                }
+            }
+        }
+    }
+}</code></pre>
+</p>
+
+<h4>Step 4</h4>
+<p>Now add a initialization module to register “IBusinessFoundationService” service so that we can use it when we will add new fields in Business Foundation entity.</p>
+<p>
+<pre><code>using ABCProject.Web.Features.Utilities.MetaModelExtensions.Services;
+using EPiServer.Framework;
+using EPiServer.Framework.Initialization;
+using EPiServer.ServiceLocation;
+
+namespace ABCProject.Web.Infrastructure
+{
+    [InitializableModule]
+    [ModuleDependency(typeof(EPiServer.Web.InitializationModule))]
+    [ModuleDependency(typeof(EPiServer.Commerce.Initialization.InitializationModule))]
+    public class SharedContainerInitialization : IConfigurableModule
+    {
+        void IConfigurableModule.ConfigureContainer(ServiceConfigurationContext context)
+        {
+            var services = context.Services;
+
+            //B
+            services.AddSingleton<IBusinessFoundationService, BusinessFoundationService>();
+        }
+
+        void IInitializableModule.Initialize(InitializationEngine context) { }
+
+        void IInitializableModule.Uninitialize(InitializationEngine context) { }
+    }
+}</code></pre>
+</p>
+
+<h4>Step 5</h4>
+<p>Now create a new class where you will define all the new field that you want to add.</p>
+<p>
+<pre><code>using ABCProject.Web.Features.Utilities.MetaModelExtensions.Models;
+using Mediachase.BusinessFoundation.Data.Meta.Management;
+using Mediachase.MetaDataPlus.Configurator;
+using MetaField = Mediachase.BusinessFoundation.Data.Meta.Management.MetaField;
+
+namespace ABCProject.Web.Features.Utilities.MetaModelExtensions.Constants
+{
+    public class BusinessFoundationFields
+    {
+        // Extending the contact entity
+        public static readonly BusinessFoundationField MasterAccount = new BusinessFoundationField
+        {
+            Type = MetaFieldType.LongText,
+            FriendlyName = "MasterAccount",
+            Name = nameof(MasterAccount),
+            Attributes = new AttributeCollection(),
+        };
+
+        public static readonly BusinessFoundationField UserType = new BusinessFoundationField
+        {
+            Type = MetaFieldType.Text,
+            FriendlyName = "UserType",
+            Name = nameof(UserType),
+            Attributes = new AttributeCollection(),
+        };
+
+        // Extending the organization entity
+        public static readonly BusinessFoundationField CustomOrganizationType = new BusinessFoundationField
+        {
+            Name = nameof(CustomOrganizationType),
+            Type = MetaFieldType.Text,
+            Attributes = new AttributeCollection(),
+            FriendlyName = "Custom Organization Type",
+        };
+
+    }
+}</code></pre>
+</p>
+
+
+<h4>Step 6</h4>
+<p>Now its time to add new field in the existing Business Foundation entity so for this we need to add one more initialization module where we will add our new fields.</p>
+<p>
+<pre><code>using System;
+using System.Linq;
+using ABCProject.Web.Features.Utilities.MetaModelExtensions.Constants;
+using ABCProject.Web.Features.Utilities.MetaModelExtensions.Services;
+using EPiServer.Data;
+using EPiServer.Framework;
+using EPiServer.Framework.Initialization;
+using EPiServer.ServiceLocation;
+using Mediachase.BusinessFoundation.Data;
+using Mediachase.BusinessFoundation.Data.Meta.Management;
+using Mediachase.BusinessFoundation.MetaForm;
+using Mediachase.Commerce.Customers;
+using Mediachase.Data.Provider;
+
+namespace ABCProject.Web.Infrastructure
+{
+    [InitializableModule]
+    [ModuleDependency(typeof(EPiServer.Web.InitializationModule))]
+    [ModuleDependency(typeof(EPiServer.Commerce.Initialization.InitializationModule))]
+    public class MetaModelInitialization : IInitializableModule
+    {
+        public void Initialize(InitializationEngine context)
+        
+        {
+            if (ServiceLocator.Current.GetInstance<IDatabaseMode>().DatabaseMode == DatabaseMode.ReadOnly)
+                return;
+
+            var connectionStringHandler = ServiceLocator.Current.GetInstance<IConnectionStringHandler>();
+            InitializeBusinessFoundation(connectionStringHandler);
+           
+        }
+
+        private static void InitializeBusinessFoundation(IConnectionStringHandler connectionStringHandler)
+        {
+            var businessFoundationService = ServiceLocator.Current.GetInstance<IBusinessFoundationService>();
+
+            using (var dataContext = new DataContext(connectionStringHandler.Commerce.Name))
+            {
+                //Adding fields in Contact entity
+                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.MasterAccount, ContactEntity.ClassName);
+                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.SalesRepOrDM, ContactEntity.ClassName);
+                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.UserType, ContactEntity.ClassName);
+                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.UserOrganizationType, ContactEntity.ClassName);
+                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.Markets, ContactEntity.ClassName);
+
+
+                //Adding fields in Organization entity
+                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.CustomOrganizationType, OrganizationEntity.ClassName);
+             
+            }
+        }
+
+        public void Uninitialize(InitializationEngine context) { }
+    }
+}</code></pre>
+</p>
+
+
+<h4>Step 7</h4>
+<p>Now press F5 and run the website and you will see the new fields in database, and you can use these field in your application.</p>
+<p>To verify you can login into your SQL Server Management Studio (SSMS). Expand the commerce database and expand below tables and check the “Columns” in it.</p>
+<p>
+    <img src="/images/blog-images/2021/04/02/commerce-db.png" alt="image" />
+</p>
+
+<p>Thanks for reading this blog post I hope it helps</p>
+<p>Thanks and regards</p>
+<p>Ravindra S. Rathore</p>
+</div>
+</div>
+<div id="disqus_thread">&nbsp;</div>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</div>
+<div class="col-md-4 col-lg-4">
+    <div class="blog_sidebar">
+    <div w3-include-html="/components/social.html"></div>
+    <div w3-include-html="/components/recent-post.html"></div>
+    <div w3-include-html="/components/category.html"></div>
+    <div w3-include-html="/components/archives.html"></div>
+</div></div>
+</div>
+</div>
+</section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
