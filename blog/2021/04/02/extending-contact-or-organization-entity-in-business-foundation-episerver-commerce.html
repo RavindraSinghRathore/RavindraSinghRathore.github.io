@@ -307,11 +307,8 @@ namespace ABCProject.Web.Infrastructure
             {
                 //Adding fields in Contact entity
                 businessFoundationService.CreateField(dataContext, BusinessFoundationFields.MasterAccount, ContactEntity.ClassName);
-                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.SalesRepOrDM, ContactEntity.ClassName);
                 businessFoundationService.CreateField(dataContext, BusinessFoundationFields.UserType, ContactEntity.ClassName);
-                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.UserOrganizationType, ContactEntity.ClassName);
-                businessFoundationService.CreateField(dataContext, BusinessFoundationFields.Markets, ContactEntity.ClassName);
-
+    
 
                 //Adding fields in Organization entity
                 businessFoundationService.CreateField(dataContext, BusinessFoundationFields.CustomOrganizationType, OrganizationEntity.ClassName);
