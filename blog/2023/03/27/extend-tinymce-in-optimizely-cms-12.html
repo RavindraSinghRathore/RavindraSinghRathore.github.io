@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160045854-1"></script>
+    <script> 
+        window.dataLayer = window.dataLayer || []; 
+         function gtag() { dataLayer.push(arguments); }
+         gtag('js', new Date());
+
+         gtag('config', 'UA-160045854-1'); 
+     </script>
+    <!--===== Meta Tag =====-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="Extending Contact or Organization entity in business foundation Episerver commerce">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Extending Contact or Organization entity in business foundation Episerver commerce, add new fields Contact commerce">
+    <meta name="author" content="root">
+
+    <!--	Css Links
+    ==================================================-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+
+    <!-- Favicon
+    ==================================================-->
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+
+    <!--	Title
+    ==================================================-->
+    <title>Extend TinyMCE in Optimizely CMS 12</title>
+
+</head>
+
+<body id="top" class="page-load">
+    <!--	Start Back to top
+    =================================================-->
+    <a href="#" id="scroll" style="display: none;"><span></span></a>
+    <!--    End Back to top
+    ==================================================-->
+    <!--    Preloader
+    ==================================================-->
+    <div class="preloader">
+        <div class="lds-css ng-scope">
+            <div class="lds-spinner" style="width: 100%;height:100%">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <!--    Preloader
+
+    ==============================================-->
+    <!-- Wrapper Start
+    ==================================================-->
+    <div id="page_wrapper">
+        <div class="row">
+            <!-- Start Nav Menu
+            ==============================================-->
+            <header class="main_nav" w3-include-html="/components/other-header.html"> </header>
+            <!-- End Nav Menu
+            ==================================================-->
+            <!--    Page Banner Start
+            ==================================================-->
+
+            <section class="banner background9 py_80 overlay_three full_row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="banner_text text-center">
+                                <h1 class="page_banner_title color_white text-uppercase">Blog Detail</h1>
+                                <div class="breadcrumbs m-auto d-inline-block">
+                                    <ul>
+                                        <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                        <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                        <li class="color-default">Extend TinyMCE in Optimizely CMS 12</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--    Page Banner End
+            ==================================================-->
+            <!--    Blog Post Start
+            ==================================================-->
+            <section class="blog_area py_80 bg_secondery full_row">
+<div class="container">
+<div class="row">
+<div class="col-md-8 col-lg-8">
+<div class="blog_details">
+<div class="blog_img overlay_one wow animated slideInUp"><img src="/images/blog-img.png" alt="image" /></div>
+<div class="blog_content bg_white blog_detail-page">
+<div class="blog_title mb_20 color_primary">
+<h2>Extend TinyMCE in Optimizely CMS 12</h2>
+</div>
+<div class="admin"><img src="/images/about/02.jpg" alt="image" /> <span class="color_primary">By - Ravindra Rathore</span></div>
+<div class="date color_primary float-left">27 March 2023</div>
+<div class="comments"><a class="color_primary" href="http://www.ravindrarathore.com/blog/2023/03/27/extend-tinymce-in-optimizely-cms-12.html#disqus_thread">Link</a></div>
+<div class="clearfix">&nbsp;</div>
+<div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+<p>Since technologies are upgraded to newer versions the ways to extend or override the out-of-the-box functionality are also changed a little bit so today I am going to write a small blog article to extend the TinyMCE/RTE 
+</p>
+<h4>  Step 1-</h4>
+    <p>  Create a class called "TinyMCEServiceCollectionExtensions.cs". You can name it anything.</p>
+
+<p>
+<pre><code> public static class TinyMCEServiceCollectionExtensions
+    {
+        public static IServiceCollection ConfigureTinyMCE(this IServiceCollection services)
+        {
+            services.Configure<TinyMceConfiguration>(o =>
+            {
+                o.Default()
+                    .AddPlugin("media hr code table textcolor")
+                    .Toolbar("formatselect styleselect | bold italic underline | epi-link anchor image epi-image-editor epi-personalized-content | bullist numlist outdent indent | searchreplace fullscreen | help")
+                    .AppendToolbar("media code hr table")
+                    .AddSetting("image_caption", true)
+                .AddSetting("image_advtab", true)
+                .ContentCss("/css/editor.css")
+                .AddSetting("image_class_list", new[]{
+                    new { title = "None", value = ""},
+                    new { title = "Image Right", value = "article-image right"},
+                    new { title = "Image Full", value = "article-image full"}
+                    });
+            
+            });
+
+            return services;
+        }
+    }</code></pre>
+</p>
+   
+<h4>Step 2</h4>
+<p>Call this class method "ConfigureTinyMCE" in Startup.cs class.</p>
+<p>
+<pre><code> public void ConfigureServices(IServiceCollection services)
+    {
+        ///disable not needed
+        //services.TryAddEnumerable(ServiceDescriptor.Singleton(typeof(IFirstRequestInitializer), typeof(AddPagesInitializer)));
+
+        if (_webHostingEnvironment.IsDevelopment())
+        {
+            AppDomain.CurrentDomain.SetData("DataDirectory", Path.Combine(_webHostingEnvironment.ContentRootPath, "App_Data"));
+
+            services.Configure<SchedulerOptions>(options => options.Enabled = false);
+        }
+
+        services
+            .AddCmsAspNetIdentity<ApplicationUser>()
+            .AddCms()
+            .AddAdminUserRegistration()
+            .ConfigureTinyMCE()
+            .AddTinyMceCustomizations()
+            .AddEmbeddedLocalization<Startup>();
+
+        if (!_webHostingEnvironment.IsDevelopment())
+        {
+            services.AddCmsCloudPlatformSupport(Configuration);
+        }
+
+       
+
+    }</code></pre>
+</p>
+
+
+<p>Thanks for reading this blog post I hope it helps</p>
+<p>Thanks and regards</p>
+<p>Ravindra S. Rathore</p>
+</div>
+</div>
+<div id="disqus_thread">&nbsp;</div>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+</div>
+<div class="col-md-4 col-lg-4">
+    <div class="blog_sidebar">
+    <div w3-include-html="/components/social.html"></div>
+    <div w3-include-html="/components/recent-post.html"></div>
+    <div w3-include-html="/components/category.html"></div>
+    <div w3-include-html="/components/archives.html"></div>
+</div></div>
+</div>
+</div>
+</section>
+            <!--    Blog Post End
+            ==================================================-->
+            <!--    Start Footer
+            ===================================================-->
+            <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+            <!--    End Footer
+            ===================================================-->
+        </div>
+    </div>
+    <!--	Wrapper End
+    =======================================================-->
+    <!--    Js Links
+    ===================================================-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>
