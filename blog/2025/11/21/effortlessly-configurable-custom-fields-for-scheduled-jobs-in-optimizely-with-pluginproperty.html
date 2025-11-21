@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Developer’s Guide: Configurable Custom Fields for Scheduled Jobs in Optimizely CMS using PlugInProperty">
+    <meta name="keywords" content="Optimizely, Scheduled Jobs, PlugInProperty, Admin UI, CMS, .NET, checkbox, textbox">
+    <meta name="author" content="root">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Effortlessly Configurable Custom Fields for Scheduled Jobs in Optimizely with PlugInProperty</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fonts/flaticon.css">
+    <link rel="stylesheet" href="/css/plugins.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/color.css" id="color-change">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+</head>
+<body id="top" class="page-load">
+    <div id="page_wrapper">
+        <header class="main_nav" w3-include-html="/components/other-header.html"></header>
+        <section class="banner background9 py_80 overlay_three full_row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="banner_text text-center">
+                            <h1 class="page_banner_title color_white text-uppercase">Blog Detail</h1>
+                            <div class="breadcrumbs m-auto d-inline-block">
+                                <ul>
+                                    <li class="hover_gray"><a href="/blog.html">Blog</a></li>
+                                    <li><i class="fa fa-angle-right" aria-hidden="true"></i></li>
+                                    <li class="color-default">Effortlessly Configurable Custom Fields for Scheduled Jobs in Optimizely with PlugInProperty</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="blog_area py_80 bg_secondery full_row">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-lg-8">
+                        <div class="blog_details">
+                            <div class="blog_img overlay_one wow animated slideInUp">
+                                <img src="/images/blog-img.png" alt="Blog visual preview" />
+                            </div>
+                            <div class="blog_content bg_white blog_detail-page">
+                                <div class="blog_title mb_20 color_primary">
+                                    <h2>Effortlessly Configurable Custom Fields for Scheduled Jobs in Optimizely with PlugInProperty</h2>
+                                </div>
+                                <div class="admin"><img src="/images/about/02.jpg" alt="Author image" /> <span class="color_primary">By - Ravindra Rathore</span></div>
+                                <div class="date color_primary float-left">21 November 2025</div>
+                                <div class="clearfix"></div>
+                                <div class="single_blog_content d-inline-block mt_30 color_secondery wow animated slideInUp">
+
+                                    <p>
+                                        Optimizely CMS lets developers add job parameters—such as textboxes and checkboxes—directly to the scheduled job admin UI using <strong>PlugInProperty</strong>. With this approach, both developers and admins can manage configuration instantly in the UI—no code deployments, content lookups, or custom content types.
+                                    </p>
+
+                                    <h4>Integrate Custom Controls Easily</h4>
+                                    <p>
+                                        To add editable fields to a scheduled job, simply decorate public properties with PlugInProperty. The admin UI will automatically display those properties as input controls. Supported controls include:<br/>
+                                        <ul>
+                                            <li><strong>TextBox</strong> (string): For emails, subjects, file paths</li>
+                                            <li><strong>CheckBox</strong> (bool): For flags, toggles, simple on/off switches</li>
+                                        </ul>
+                                        Configuration is immediate—no deployments or page-level settings needed.
+                                    </p>
+
+                                   
+                                   
+
+                                    <h4>Attribute Syntax Reference</h4>
+                                    <p>
+                                        Here are examples using different UI controls:
+                                    </p>
+                                    <pre><code>
+// TextBox for email input
+[PlugInProperty(AdminControl = typeof(TextBox), AdminControlValue = "Text", Description = "Emails (comma-separated)")]
+public string ReportEmailAddresses { get; set; }
+
+// CheckBox for boolean flags
+[PlugInProperty(AdminControl = typeof(CheckBox), AdminControlValue = "Checked", Description = "Enable notification emails")]
+public bool EmailReportEnabled { get; set; }
+                                    </code></pre>
+                                    <h4>Developer-Focused Property Access</h4>
+                                    <p>
+                                        All PlugInProperty fields are exposed as regular public properties in your scheduled job class. When the job runs, access them directly—no need for content queries or settings lookups:
+                                    </p>
+                                    <pre><code>
+public override string Execute()
+{
+    var emails = ReportEmailAddresses;             // Textbox input (string)
+    var enableNotifications = EmailReportEnabled;  // Checkbox (bool)
+    // ... main job code ...
+    return "Job completed successfully";
+}
+                                    </code></pre>
+                                    <p>
+                                        This pattern keeps your code simple, avoids reliance on start page/settings page models, and improves maintainability.
+                                    </p>
+                                    <h4>Diverse Use Cases</h4>
+                                    <p>
+                                        PlugInProperty is highly flexible. Use it to:<br/>
+                                        <ul>
+                                            <li>Input notification emails (textbox)</li>
+                                            <li>Toggle features (checkbox)</li>
+                                            <li>Set retry limits (textbox/numeric)</li>
+                                            <li>Provide job labels, validation types, and more</li>
+                                        </ul>
+                                        Screenshots below show these controls in action—note the full range of editable fields available for any scheduled job.
+                                    </p>
+                                    <p>
+                                        <img src="/images/blog-images/2025/11/21/1.png" alt="Job Configuration: dynamic textbox, checkbox" />
+                                        <img src="/images/blog-images/2025/11/21/2.png" alt="Plug-in Manager: scheduled jobs and field types" />
+                                    </p>
+
+                                    <h4>Key Advantages for Developers</h4>
+                                    <ul class="blog-detail-list">
+                                        <li><strong>No code deployments:</strong> Admins change config instantly.</li>
+                                        <li><strong>Direct property access:</strong> No query or lookup logic required.</li>
+                                        <li><strong>Unified logic & config:</strong> All settings reside in your job class.</li>
+                                        <li><strong>Multiple control types:</strong> Combine textboxes and checkboxes as needed.</li>
+                                        <li><strong>Reduced technical overhead:</strong> CMS and jobs stay lighter, simpler, and easier to maintain.</li>
+                                    </ul>
+
+                                    <h4>Quick Implementation Steps</h4>
+                                    <ul class="blog-detail-list">
+                                        <li>Add public properties, decorate with <code>[PlugInProperty]</code>.</li>
+                                        <li>Register your class using <code>[ScheduledPlugIn]</code>.</li>
+                                        <li>Edit settings directly from the Optimizely CMS admin interface.</li>
+                                        <li>Use directly in your scheduled job logic—no extra config needed.</li>
+                                    </ul>
+
+                                    <h4>Visual Examples</h4>
+                                    <p>
+                                        All configuration fields presented above will appear as editable, admin-accessible inputs. Any change made in the UI is available immediately on the next scheduled job execution.
+                                    </p>
+
+                                    <h4>Conclusion</h4>
+                                    <p>
+                                        PlugInProperty supercharges scheduled jobs in Optimizely CMS—making them flexible, developer-friendly, and highly maintainable. With instant configuration, direct code access to properties, and diverse control types, you can deliver powerful job configuration to CMS admins and keep your own code clean and future-proof.<br/>
+                                        Integrate PlugInProperty to streamline daily maintenance and minimize project complexity.
+                                    </p>
+                                    <p>
+                                        Thanks for reading and happy coding!
+                                    </p>
+                                    <p>Ravindra S. Rathore</p>
+                                </div>
+                            </div>
+                            <div id="disqus_thread"></div>
+                            <script>
+                                (function () {
+                                    var d = document, s = d.createElement('script');
+                                    s.src = 'https://http-www-ravindrarathore-com.disqus.com/embed.js';
+                                    s.setAttribute('data-timestamp', +new Date());
+                                    (d.head || d.body).appendChild(s);
+                                })();
+                            </script>
+                            <noscript>
+                                Please enable JavaScript to view the 
+                                <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+                            </noscript>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4">
+                        <div class="blog_sidebar">
+                            <div w3-include-html="/components/social.html"></div>
+                            <div w3-include-html="/components/recent-post.html"></div>
+                            <div w3-include-html="/components/category.html"></div>
+                            <div w3-include-html="/components/archives.html"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="p_20 color_primary bg_secondery text-center full_row" w3-include-html="/components/footer.html"></footer>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/plugins.js"></script>
+    <script src="/js/custom.js"></script>
+    <script id="dsq-count-scr" src="//http-www-ravindrarathore-com.disqus.com/count.js" async></script>
+</body>
+</html>

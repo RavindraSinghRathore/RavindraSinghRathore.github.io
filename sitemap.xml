@@ -8,125 +8,130 @@
 
 
 <url>
-  <loc>http://www.ravindrarathore.com/</loc>
+  <loc>https://ravindrarathore.com//</loc>
   <lastmod>2020-09-01T12:08:04+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog.html</loc>
+  <loc>https://ravindrarathore.com//blog.html</loc>
   <lastmod>2020-03-25T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2023/03/27/extend-tinymce-in-optimizely-cms-12</loc>
+  <loc>https://ravindrarathore.com//blog/2025/11/21/effortlessly-configurable-custom-fields-for-scheduled-jobs-in-optimizely-with-pluginproperty</loc>
+  <lastmod>2025-11-21T12:08:04+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ravindrarathore.com//blog/2023/03/27/extend-tinymce-in-optimizely-cms-12</loc>
   <lastmod>2023-03-27T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2021/04/02/extending-contact-or-organization-entity-in-business-foundation-episerver-commerce</loc>
+  <loc>https://ravindrarathore.com//blog/2021/04/02/extending-contact-or-organization-entity-in-business-foundation-episerver-commerce</loc>
   <lastmod>2021-04-02T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2020/12/15/lesson-learned-while-working-with-episerver-commerce-service-api</loc>
+  <loc>https://ravindrarathore.com//blog/2020/12/15/lesson-learned-while-working-with-episerver-commerce-service-api</loc>
   <lastmod>2020-12-15T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2020/09/01/possible-ways-to-login-into-episerver-commerce-manager</loc>
+  <loc>https://ravindrarathore.com//blog/2020/09/01/possible-ways-to-login-into-episerver-commerce-manager</loc>
   <lastmod>2020-09-01T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2020/05/25/unlock-locked-episerver-commerce-user-account</loc>
+  <loc>https://ravindrarathore.com//blog/2020/05/25/unlock-locked-episerver-commerce-user-account</loc>
   <lastmod>2020-05-25T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2020/05/23/reset-or-update-episerver-commerce-manager-admin-password</loc>
+  <loc>https://ravindrarathore.com//blog/2020/05/23/reset-or-update-episerver-commerce-manager-admin-password</loc>
   <lastmod>2020-05-25T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2020/04/15/use-of-episerver-url-class-in-propertyList</loc>
+  <loc>https://ravindrarathore.com//blog/2020/04/15/use-of-episerver-url-class-in-propertyList</loc>
   <lastmod>2020-04-25T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/12/15/disable-indexing-for-specific-item-in-episerver-find</loc>
+  <loc>https://ravindrarathore.com//blog/2019/12/15/disable-indexing-for-specific-item-in-episerver-find</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/11/03/categorizing-the-user-defined-properties-in-all-properties-view-episerver-cms</loc>
+  <loc>https://ravindrarathore.com//blog/2019/11/03/categorizing-the-user-defined-properties-in-all-properties-view-episerver-cms</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/10/17/playing-with-episerver-webconfig-settings-programmatically</loc>
+  <loc>https://ravindrarathore.com//blog/2019/10/17/playing-with-episerver-webconfig-settings-programmatically</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/10/05/improve-editor-experience-for-datetime-property</loc>
+  <loc>https://ravindrarathore.com//blog/2019/10/05/improve-editor-experience-for-datetime-property</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/10/01/rebuild-the-index-for-selected-sites-in-episerver-find-admin-tool</loc>
+  <loc>https://ravindrarathore.com//blog/2019/10/01/rebuild-the-index-for-selected-sites-in-episerver-find-admin-tool</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/09/29/reindex-a-target-site-in-find-schedule-job</loc>
+  <loc>https://ravindrarathore.com//blog/2019/09/29/reindex-a-target-site-in-find-schedule-job</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/09/16/the-all-new-improved-paasportal-on-episerver-dxc-services</loc>
+  <loc>https://ravindrarathore.com//blog/2019/09/16/the-all-new-improved-paasportal-on-episerver-dxc-services</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/09/11/an-easy-way-to-manage-static-text-in-episerver-cms</loc>
+  <loc>https://ravindrarathore.com//blog/2019/09/11/an-easy-way-to-manage-static-text-in-episerver-cms</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/08/02/retrieving-absolute-url-of-current-page-on-any-page-or-block</loc>
+  <loc>https://ravindrarathore.com//blog/2019/08/02/retrieving-absolute-url-of-current-page-on-any-page-or-block</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/07/22/disallow-duplicate-items-in-the-episerver-contentarea-property</loc>
+  <loc>https://ravindrarathore.com//blog/2019/07/22/disallow-duplicate-items-in-the-episerver-contentarea-property</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/06/24/render-episerver-page-item-tree-on-view</loc>
+  <loc>https://ravindrarathore.com//blog/2019/06/24/render-episerver-page-item-tree-on-view</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/03/14/adding-a-start-page-episerver-for-beginners</loc>
+  <loc>https://ravindrarathore.com//blog/2019/03/14/adding-a-start-page-episerver-for-beginners</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/02/21/hosting-a-episerver-site-in-iis-episerver-for-beginners</loc>
+  <loc>https://ravindrarathore.com//blog/2019/02/21/hosting-a-episerver-site-in-iis-episerver-for-beginners</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/01/29/creating-your-first-solution-episerver-for-beginners</loc>
+  <loc>https://ravindrarathore.com//blog/2019/01/29/creating-your-first-solution-episerver-for-beginners</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>http://www.ravindrarathore.com/blog/2019/01/10/configure-your-development-environment-episerver-for-beginners</loc>
+  <loc>https://ravindrarathore.com//blog/2019/01/10/configure-your-development-environment-episerver-for-beginners</loc>
   <lastmod>2020-03-11T12:08:04+00:00</lastmod>
   <priority>0.80</priority>
 </url>
